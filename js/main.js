@@ -47,4 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
       header.style.transform = 'translateY(0)';
     }
   });
+
+  // Dynamic footer year
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 });

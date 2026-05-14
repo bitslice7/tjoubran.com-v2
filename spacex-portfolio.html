@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpaceX Portfolio | Thomas Joubran</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <button id="menu-btn" class="menu-btn">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="portfolio-hero">
+    <h1>Thomas Joubran</h1>
+    <p>Prepared for the Space Exploration Technologies Corporation Hiring Team</p>
+  </section>
+
+  <!-- Glider Banner -->
+  <div class="portfolio-banner">
+    <img src="Images/glider.jpeg" alt="Thomas Joubran and WPI professor gliding" />
+    <p class="portfolio-banner-caption">Pictured: Myself (Left) and a WPI professor (Right) going gliding.</p>
+  </div>
+
+  <!-- Informal Message -->
+  <section class="portfolio-message">
+    <h2>An Informal Message</h2>
+    <p>
+      I have always been inspired by space exploration; it is my belief that exploration is
+      the most natural thing that comes to humans as a species.
+    </p>
+    <p>
+      Humans are at their best when they've climbed one peak, only to see the next one in
+      the distance and feel the urge to keep going. That is the mentality that takes humans
+      to space, to Mars, and eventually, beyond.
+    </p>
+    <p>
+      Someday, I would like to see Earth's entirety with my own eyes and perhaps even step
+      on the surface of Mars. It is the whole reason why I study to become an aerospace
+      engineer. I want to build beautiful things (even if they're not very beautiful at
+      first), climb those mountains, and "boldly go where no man has gone before."
+    </p>
+    <p>
+      I am deeply honored to be considered for this internship and I am excited to show off
+      some of my hobbies, projects, and work samples.
+    </p>
+    <p>Thank you for your time.</p>
+    <p class="portfolio-signature">- Thomas</p>
+  </section>
+
+  <!-- Project Preview Cards -->
+  <section class="portfolio-projects">
+
+    <h2 class="project-group-title">Engineering Projects</h2>
+    <div class="project-cards">
+
+      <div class="project-preview-card" data-modal="modal-iqp">
+        <div class="project-card-img" style="background-image: url('Images/Parks_Map.png')"></div>
+        <div class="project-card-body">
+          <h3>IQP: Remote Sensing &amp; ArcGIS</h3>
+          <p>Forest restoration analysis for the Greater Wellington Regional Council (team project).</p>
+          <span class="project-card-cta">Explore &#8594;</span>
+        </div>
+      </div>
+
+      <div class="project-preview-card" data-modal="modal-ieee">
+        <div class="project-card-img" style="background-image: url('Images/gripper_demo.gif')"></div>
+        <div class="project-card-body">
+          <h3>IEEE Robotics Compliant Gripper</h3>
+          <p>Single-motor compliant gripping mechanism with a fail-safe shear-pin assembly for competition robotics.</p>
+          <span class="project-card-cta">Explore &#8594;</span>
+        </div>
+      </div>
+
+      <div class="project-preview-card" data-modal="modal-onair">
+        <div class="project-card-img" style="background-image: url('Images/onair_deployed.jpeg')"></div>
+        <div class="project-card-body">
+          <h3>ESP32 Presence Monitoring System</h3>
+          <p>ESP32-based occupancy detection and Slack integration for WPI's radio shack.</p>
+          <span class="project-card-cta">Explore &#8594;</span>
+        </div>
+      </div>
+
+      <div class="project-preview-card" data-modal="modal-microhome">
+        <div class="project-card-img" style="background-image: url('Images/microhome_cad.avif')"></div>
+        <div class="project-card-body">
+          <h3>Lipscomb Microhome</h3>
+          <p>A 12×7 ft microhome built with fellow freshman engineering students (team project).</p>
+          <span class="project-card-cta">Explore &#8594;</span>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="project-group-title">Interests &amp; Hobbies</h2>
+    <div class="project-cards">
+
+      <div class="project-preview-card" data-modal="modal-astro">
+        <div class="project-card-img" style="background-image: url('Images/eagle_nebula.jpg')"></div>
+        <div class="project-card-body">
+          <h3>Amateur Astrophotography</h3>
+          <p>Deep-sky imaging telescopes: setup, alignment, and calibration.</p>
+          <span class="project-card-cta">Explore &#8594;</span>
+        </div>
+      </div>
+
+      <div class="project-preview-card" data-modal="modal-fireworks">
+        <div class="project-card-img" style="background-image: url('Images/fireworks.jpeg')"></div>
+        <div class="project-card-body">
+          <h3>Annual Fireworks Display</h3>
+          <p>Yearly professional fireworks show: planning, setup, and execution.</p>
+          <span class="project-card-cta">Explore &#8594;</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MODALS ===================== -->
+
+  <!-- Astrophotography Modal -->
+  <div class="modal-overlay" id="modal-astro">
+    <div class="modal">
+      <button class="modal-close">&times;</button>
+      <h2>Amateur Astrophotography</h2>
+      <p>I build and operate deep-sky imaging telescopes. The work typically requires quick setup, alignment, calibration, and troubleshooting in order to maximize imaging uptime.</p>
+      <div class="modal-cols">
+        <div>
+          <strong>Relevance</strong>
+          <ul>
+            <li>Integrated software across various device ecosystems</li>
+            <li>Tuned tracking and guiding for long exposures</li>
+            <li>Diagnosed alignment, focus, and calibration issues</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Equipment</strong>
+          <ul>
+            <li>Telescope day and night operations</li>
+            <li>Multi-session imaging workflows</li>
+            <li>Image stacking and post-processing</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-images modal-images-3col">
+        <img src="Images/eaglegoodsmol.jpg" alt="Eagle Nebula" />
+        <img src="Images/Whirlpool Galaxy.jpg" alt="Whirlpool Galaxy" />
+        <img src="Images/Dumbbell Nebula smol.jpg" alt="Dumbbell Nebula" />
+        <img src="Images/smallm81.jpg" alt="Bode's Galaxy" />
+        <img src="Images/Total Solar Eclipse.jpg" alt="Total Solar Eclipse" />
+        <img src="Images/Partial Solar Eclipse.jpg" alt="Partial Solar Eclipse" />
+        <img src="Images/Pleiades.jpg" alt="Pleiades Star Cluster" />
+      </div>
+      <p class="modal-caption">Click any image to view fullscreen. Eagle Nebula, Whirlpool Galaxy, Dumbbell Nebula, Bode's Galaxy, Total Solar Eclipse, Partial Solar Eclipse, Pleiades.</p>
+    </div>
+  </div>
+
+  <!-- Presence Monitor Modal -->
+  <div class="modal-overlay" id="modal-onair">
+    <div class="modal">
+      <button class="modal-close">&times;</button>
+      <h2>ESP32 Presence Monitoring System</h2>
+      <p>Developed an ESP32-based monitoring system for the WPI Wireless Association's space, "The Shack," to detect occupancy, control an ON AIR sign, and post occupancy status updates through Slack to encourage member usage of the space. The project combined embedded sensing, relay control, and deployment in a shared technical space.</p>
+      <div class="modal-images modal-images-3col">
+        <img src="Images/onair_bench.jpeg" alt="Presence monitor on the bench" />
+        <img src="Images/onair_enclosure.jpeg" alt="Presence monitor electronics inside the enclosure" />
+        <img src="Images/onair_deployed.jpeg" alt="Deployed ON AIR sign in the stairwell" />
+      </div>
+      <div class="modal-cols">
+        <div>
+          <strong>System elements</strong>
+          <ul>
+            <li>ESP32 microcontroller</li>
+            <li>Light sensor based detection logic</li>
+            <li>Relay-controlled signage</li>
+            <li>Slack API integration</li>
+            <li>3D printed enclosure and hardware</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Design considerations</strong>
+          <ul>
+            <li>Long term operation and reliability</li>
+            <li>False-trigger reduction through moving average</li>
+            <li>Simple interface for other club members</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IQP Modal -->
+  <div class="modal-overlay" id="modal-iqp">
+    <div class="modal">
+      <button class="modal-close">&times;</button>
+      <h2>IQP: Remote Sensing, Excel, and ArcGIS Applications</h2>
+      <p>WPI Interactive Qualifying Project with The Greater Wellington Regional Council focused on evaluating and quantifying forest restoration progress across regional parks in New Zealand. The project connected ecological monitoring, spreadsheet-based data cleaning, ArcGIS visualization, asset-management logic, and future remote sensing workflows.</p>
+      <div class="modal-cols">
+        <div>
+          <strong>My emphasis</strong>
+          <ul>
+            <li>Built ArcGIS displays with survival metrics, custom pop-ups, and attribute tables</li>
+            <li>Designed a GIS workflow to visualize restoration performance across ~343 hectares</li>
+            <li>Analyzed native forest data across five regional parks for carbon valuation and long-term monitoring</li>
+            <li>Researched carbon credit policy and financing background</li>
+            <li>Created a regional park map for site-level analysis</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Remote sensing research</strong>
+          <ul>
+            <li>Drone imagery and photogrammetry for canopy mapping</li>
+            <li>LiDAR for canopy-height estimation</li>
+            <li>AI-assisted stem counting methods</li>
+            <li>Cleaning of contractor survival audit data</li>
+            <li>Visualization of survival and mortality rates</li>
+            <li>Recommendations for future data collection workflows</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-images modal-images-2col">
+        <img src="Images/Parks_Map.png" alt="Regional parks map" />
+        <img src="Images/QEP.png" alt="QEP data visualization" />
+      </div>
+    </div>
+  </div>
+
+  <!-- IEEE Robotics Modal -->
+  <div class="modal-overlay" id="modal-ieee">
+    <div class="modal">
+      <button class="modal-close">&times;</button>
+      <h2>IEEE Robotics Compliant Gripper</h2>
+      <p>Led the mechanical design of a compliant gripping mechanism for an IEEE robotics competition. The design used a single motor to reduce software and sensor complexity, solving the gripping problem through mechanical ingenuity rather than additional electronics.</p>
+      <div class="modal-cols">
+        <div>
+          <strong>Design highlights</strong>
+          <ul>
+            <li>Single-motor compliant mechanism</li>
+            <li>Custom shear-pin fail-safe assembly</li>
+            <li>Designed to fail safely under excess torque</li>
+            <li>Rapid reset for reuse during competition</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Fabrication and iteration</strong>
+          <ul>
+            <li>CAD modeling and technical documentation</li>
+            <li>Manual machining</li>
+            <li>3D printed prototypes</li>
+            <li>Iterated under competition-driven constraints</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-images modal-images-3col">
+        <img src="Images/gripper_demo.gif" alt="The compliant gripper picking up game pieces in competition" />
+        <img src="Images/gripper_mechanism.png" alt="CAD model of the compliant gripping mechanism" />
+        <img src="Images/gripper_shearpin.png" alt="CAD model of the shear-pin collar and retainer" />
+      </div>
+      <p class="modal-caption">The gripper in action, the compliant gripping mechanism, and the shear-pin collar and retainer.</p>
+    </div>
+  </div>
+
+  <!-- Fireworks Modal -->
+
+  <div class="modal-overlay" id="modal-fireworks">
+    <div class="modal">
+      <button class="modal-close">&times;</button>
+      <h2>Annual Fireworks Display</h2>
+      <p>Each year I plan, set up, and execute a professional fireworks show. The work involves sourcing materials, laying out firing sequences, coordinating safety procedures, and troubleshooting in real time under tight timing constraints.</p>
+      <div class="modal-images modal-images-2col">
+        <img src="Images/fireworks.jpeg" alt="Fireworks display" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Microhome Modal -->
+  <div class="modal-overlay" id="modal-microhome">
+    <div class="modal">
+      <button class="modal-close">&times;</button>
+      <h2>Lipscomb University Microhome</h2>
+      <p>As part of Lipscomb University's Introduction to Engineering course in fall 2022, I worked with thirteen fellow freshman mechanical engineering students to design and build a 12×7 ft microhome. The structure was engineered to run on either grid power or solar energy and was donated to Second Chance Ministries in Hurricane Mills, Tennessee, to provide emergency shelter for individuals displaced by the devastating 2021 floods in Waverly.</p>
+      <div class="modal-cols">
+        <div>
+          <strong>Engineering skills applied</strong>
+          <ul>
+            <li>Trigonometry for truss angle calculations</li>
+            <li>Structural framing and "building square" techniques</li>
+            <li>Material selection and procurement</li>
+            <li>Dual-power system design (grid and solar)</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Design adaptations</strong>
+          <ul>
+            <li>Mothers with infants</li>
+            <li>Homeless students</li>
+            <li>Individuals with visual impairment</li>
+            <li>Wheelchair users</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-images modal-images-3col">
+        <img src="Images/microhome_cad.avif" alt="Microhome CAD design" />
+        <img src="Images/microhome_3.jpg" alt="Microhome framing under construction" />
+        <img src="Images/microhome_1.avif" alt="Microhome build photo" />
+        <img src="Images/microhome_2.avif" alt="Microhome build photo" />
+      </div>
+      <p class="modal-caption">Faculty: Dr. David Elrod and Dr. Kirsten Dodson, Lipscomb University, Raymond B. Jones College of Engineering. Donated to Second Chance Ministries, founded by Shirley James.</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Thomas Joubran - <span id="footer-year"></span></p>
+  </footer>
+
+  <script defer src="js/main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // ── Project card → modal ──────────────────────────────────────
+    document.querySelectorAll('.project-preview-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const modal = document.getElementById(card.dataset.modal);
+        if (!modal) return;
+        modal.style.display = 'flex';
+        requestAnimationFrame(() => modal.classList.add('visible'));
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal(overlay) {
+      overlay.classList.remove('visible');
+      setTimeout(() => { overlay.style.display = 'none'; }, 300);
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay')));
+    });
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal(overlay);
+      });
+    });
+
+    // ── Image lightbox ────────────────────────────────────────────
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.style.zIndex = '99999';
+
+    const lbCloseBtn = document.createElement('button');
+    lbCloseBtn.className = 'lightbox-close';
+    lbCloseBtn.innerHTML = '&times;';
+
+    const lbCounter = document.createElement('div');
+    lbCounter.className = 'lightbox-counter';
+
+    const lbImg = document.createElement('img');
+    lbImg.className = 'lightbox-img';
+
+    const lbCaption = document.createElement('div');
+    lbCaption.className = 'lightbox-caption';
+
+    const lbNav = document.createElement('div');
+    lbNav.className = 'lightbox-nav';
+
+    const lbLeft = document.createElement('button');
+    lbLeft.className = 'lightbox-nav-btn';
+    lbLeft.innerHTML = '&#8592; Prev';
+
+    const lbRight = document.createElement('button');
+    lbRight.className = 'lightbox-nav-btn';
+    lbRight.innerHTML = 'Next &#8594;';
+
+    lbNav.appendChild(lbLeft);
+    lbNav.appendChild(lbRight);
+
+    lb.appendChild(lbCloseBtn);
+    lb.appendChild(lbCounter);
+    lb.appendChild(lbImg);
+    lb.appendChild(lbCaption);
+    lb.appendChild(lbNav);
+    document.body.appendChild(lb);
+
+    let lbSources = [];
+    let lbIndex = 0;
+    let lbKeyHandler;
+
+    function lbShow(index) {
+      lbIndex = (index + lbSources.length) % lbSources.length;
+      lbImg.style.opacity = '0';
+      setTimeout(() => {
+        lbImg.src = lbSources[lbIndex].src;
+        lbImg.alt = lbSources[lbIndex].alt;
+        lbCaption.textContent = lbSources[lbIndex].alt;
+        lbCounter.textContent = (lbIndex + 1) + ' / ' + lbSources.length;
+        lbImg.style.opacity = '1';
+      }, 150);
+    }
+
+    function closeLb() {
+      lb.classList.remove('visible');
+      setTimeout(() => { lb.style.display = 'none'; }, 300);
+      document.removeEventListener('keydown', lbKeyHandler);
+    }
+
+    function lbOpen(images, startIndex) {
+      lbSources = Array.from(images).map(img => ({ src: img.src, alt: img.alt }));
+      lbShow(startIndex);
+      lb.style.display = 'flex';
+      requestAnimationFrame(() => lb.classList.add('visible'));
+      lbKeyHandler = (e) => {
+        if (e.key === 'ArrowLeft')  lbShow(lbIndex - 1);
+        if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
+        if (e.key === 'Escape')     closeLb();
+      };
+      document.addEventListener('keydown', lbKeyHandler);
+    }
+
+    lbCloseBtn.addEventListener('click', closeLb);
+    lbLeft.addEventListener('click',  (e) => { e.stopPropagation(); lbShow(lbIndex - 1); });
+    lbRight.addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbIndex + 1); });
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+
+    // Swipe support
+    let touchStartX = 0;
+    lb.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) lbShow(diff > 0 ? lbIndex + 1 : lbIndex - 1);
+    }, { passive: true });
+
+    // Attach click to every modal image
+    document.querySelectorAll('.modal-images img').forEach((img, _, all) => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const siblings = img.closest('.modal-images').querySelectorAll('img');
+        const idx = Array.from(siblings).indexOf(img);
+        lbOpen(siblings, idx);
+      });
+    });
+
+    // ── Esc closes modal too ──────────────────────────────────────
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape')
+        document.querySelectorAll('.modal-overlay.visible').forEach(closeModal);
+    });
+  });
+  </script>
+</body>
+</html>
