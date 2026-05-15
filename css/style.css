@@ -410,6 +410,53 @@ body {
   line-height: 1.8;
 }
 
+/* Why these examples matter */
+.why-section {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 2rem 3rem;
+  border-bottom: 1px solid #222;
+}
+.why-section h2 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.why-section > p {
+  color: #ccc;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.why-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.why-list li {
+  color: #bbb;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  padding: 0.65rem 0;
+  border-top: 1px solid #1a1a1a;
+}
+.why-list li:first-child { border-top: none; }
+.why-list strong { color: #fff; }
+
+/* Problem / Constraints / Solution / Outcome blocks in modals */
+.pcsr {
+  margin-bottom: 1.5rem;
+}
+.pcsr p {
+  color: #bbb;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+.pcsr p strong {
+  color: #fff;
+  display: inline;
+}
+
 /* Portfolio Sections */
 .portfolio-section {
   max-width: 700px;

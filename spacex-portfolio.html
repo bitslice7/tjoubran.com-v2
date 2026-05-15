@@ -35,25 +35,25 @@
   <section class="portfolio-message">
     <h2>An Informal Message</h2>
     <p>
-      I have always been inspired by space exploration; it is my belief that exploration is
-      the most natural thing that comes to humans as a species.
+      I have always been inspired by space exploration; it is my belief that exploration is the most natural thing that comes to humans as a species.
     </p>
     <p>
-      Humans are at their best when they've climbed one peak, only to see the next one in
-      the distance and feel the urge to keep going. That is the mentality that takes humans
-      to space, to Mars, and eventually, beyond.
+      Humans are at their best when they've climbed one peak, only to see the next one in the distance and feel the urge to keep going. That is the mentality that takes humans to space, to Mars, and eventually, beyond.
     </p>
     <p>
-      Someday, I would like to see Earth's entirety with my own eyes and perhaps even step
-      on the surface of Mars. It is the whole reason why I study to become an aerospace
-      engineer. I strive to build beautiful things, climb those mountains, and "boldly go where no man has gone before."
+      Someday, I would like to see Earth's entirety with my own eyes and perhaps even step on the surface of Mars. It is the whole reason why I study to become an aerospace engineer. I strive to build beautiful things, climb those mountains, and "boldly go where no man has gone before."
     </p>
     <p>
-      I am deeply honored to be considered for this internship and I am excited to show off
-      some of my hobbies, projects, and work samples.
+      I am deeply honored to be considered for this internship and I am excited to show off some of my hobbies, projects, and work samples.
     </p>
     <p>Thank you for your time.</p>
     <p class="portfolio-signature">- Thomas</p>
+  </section>
+
+  <!-- A note before the projects -->
+  <section class="why-section">
+    <h2>A note before the projects</h2>
+    <p>Some of these were assigned, some were class projects, and one started as a hobby that got out of hand. They cover pretty different ground: running an embedded system in perpetuity, designing something to fail on purpose, cleaning a messy multi-year dataset, and owning the CAD on a team build that got finished and donated in a semester. Together they reflect the kind of work I want to be doing at SpaceX.</p>
   </section>
 
   <!-- Project Preview Cards -->
@@ -66,7 +66,7 @@
         <div class="project-card-img" style="background-image: url('Images/Parks_Map.png')"></div>
         <div class="project-card-body">
           <h3>IQP: Remote Sensing &amp; ArcGIS</h3>
-          <p>Forest restoration analysis for the Greater Wellington Regional Council (team project).</p>
+          <p>Five-year forest restoration dataset across 5 parks and ~343 hectares for the Greater Wellington Regional Council (team project).</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
       </div>
@@ -75,7 +75,7 @@
         <div class="project-card-img" style="background-image: url('Images/gripper_demo.gif')"></div>
         <div class="project-card-body">
           <h3>IEEE Robotics Compliant Gripper</h3>
-          <p>Single-motor compliant gripping mechanism with a fail-safe shear-pin assembly for competition robotics.</p>
+          <p>Single-motor compliant gripper with a shear-pin mechanical fuse. Seven prototypes; reset cut from 3 min to under 1.</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
       </div>
@@ -84,7 +84,7 @@
         <div class="project-card-img" style="background-image: url('Images/onair_deployed.jpeg')"></div>
         <div class="project-card-body">
           <h3>ESP32 Presence Monitoring System</h3>
-          <p>ESP32-based occupancy detection and Slack integration for WPI's radio shack.</p>
+          <p>~$30 BOM. Running 24/7 since deployment with zero false triggers thanks to a moving-average filter built in from day one.</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
       </div>
@@ -93,7 +93,7 @@
         <div class="project-card-img" style="background-image: url('Images/microhome_cad.avif')"></div>
         <div class="project-card-body">
           <h3>Lipscomb Microhome</h3>
-          <p>A 12×7 ft microhome built with fellow freshman engineering students (team project).</p>
+          <p>12×7 ft dual-power microhome built in one semester by a freshman team of 14 and donated for emergency shelter (team project).</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
       </div>
@@ -116,7 +116,7 @@
         <div class="project-card-img" style="background-image: url('Images/fireworks.jpeg')"></div>
         <div class="project-card-body">
           <h3>Annual Fireworks Display</h3>
-          <p>A yearly tradition I look forward to: putting on a fireworks show for friends and family.</p>
+          <p>Yearly show I have been running since 2018. ~90 mortars over open water, remotely detonated; drew nearly 2,000 spectators last year.</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
       </div>
@@ -168,26 +168,10 @@
     <div class="modal">
       <button class="modal-close">&times;</button>
       <h2>ESP32 Presence Monitoring System</h2>
-      <p>Developed an ESP32-based monitoring system for the WPI Wireless Association's space, "The Shack," to detect occupancy, control an ON AIR sign, and post occupancy status updates through Slack to encourage member usage of the space. The project combined embedded sensing, relay control, and deployment in a shared technical space.</p>
-      <div class="modal-cols">
-        <div>
-          <strong>System elements</strong>
-          <ul>
-            <li>ESP32 microcontroller</li>
-            <li>Light sensor based detection logic</li>
-            <li>Relay-controlled signage</li>
-            <li>Slack API integration</li>
-            <li>3D printed enclosure and hardware</li>
-          </ul>
-        </div>
-        <div>
-          <strong>Design considerations</strong>
-          <ul>
-            <li>Long term operation and reliability</li>
-            <li>False-trigger reduction through moving average</li>
-            <li>Simple interface for club members</li>
-          </ul>
-        </div>
+      <div class="pcsr">
+        <p>I built an ESP32-based monitoring system for WPI Wireless Association's radio "Shack" to detect when the space is in use, control an ON AIR sign, and post status updates to Slack.</p>
+        <p>The system uses a lux sensor for occupancy detection, a moving-average filter to reduce false triggers, relay-controlled signage, Slack API integration, and a 3D-printed enclosure. The design needed to be cheap, reliable enough to run unattended, and simple enough for other club members to maintain.</p>
+        <p>So far, it has had no false triggers and has not gone down. During the school year, the Slack channel usually updates once or twice a day; over the summer, it slows to roughly once a week.</p>
       </div>
       <div class="modal-images modal-images-3col">
         <img src="Images/onair_bench.jpeg" alt="Presence monitor on the bench" />
@@ -202,29 +186,12 @@
     <div class="modal">
       <button class="modal-close">&times;</button>
       <h2>IQP: Remote Sensing, Excel, and ArcGIS Applications</h2>
-      <p>WPI Interactive Qualifying Project with The Greater Wellington Regional Council focused on evaluating and quantifying forest restoration progress across regional parks in New Zealand. The project connected ecological monitoring, spreadsheet-based data cleaning, ArcGIS visualization, asset-management logic, and future remote sensing workflows.</p>
-      <div class="modal-cols">
-        <div>
-          <strong>My contributions</strong>
-          <ul>
-            <li>Built ArcGIS survival-metric displays</li>
-            <li>GIS workflow across ~343 hectares</li>
-            <li>Analyzed forest data, five parks</li>
-            <li>Researched carbon credit policy</li>
-            <li>Created regional park analysis map</li>
-          </ul>
-        </div>
-        <div>
-          <strong>Remote sensing research</strong>
-          <ul>
-            <li>Drone imagery for canopy mapping</li>
-            <li>LiDAR for canopy-height estimation</li>
-            <li>AI-assisted stem counting methods</li>
-            <li>Cleaned contractor survival-audit data</li>
-            <li>Visualized survival and mortality rates</li>
-            <li>Recommended future data-collection workflows</li>
-          </ul>
-        </div>
+      <div class="pcsr">
+        <p>Wellington's regional council had years of forest restoration data spread across five parks and wanted to know what it actually said. Were the plantings surviving? Could the data show how the program was progressing, and help justify future investment?</p>
+        <p>My team had six months to work within a program that had already been running for 5–6 years. The scope covered hundreds of planting sites, roughly 343 hectares in total, and contractor survival audits that varied heavily in quality.</p>
+        <p>I cleaned and organized multi-year contractor survival audit data, then used it to build an ArcGIS map covering the five regional parks. The map included park, planting area, and monitoring site layers, with survival and mortality metrics, custom survival data pop-ups, and attribute tables to make the data easier to interpret.</p>
+        <p>I also researched possible next steps for future monitoring, including drone imagery, LiDAR canopy-height estimation, photogrammetry, and AI-assisted stem counting, along with the carbon credit and financing background tied to the restoration program.</p>
+        <p>By the end, the council had a cleaner dataset, a map that made the survival data easier to understand, and a better idea of what remote-sensing tools might make sense as the project progresses.</p>
       </div>
       <div class="modal-images modal-images-2col">
         <img src="Images/Parks_Map.png" alt="Regional parks map" />
@@ -238,7 +205,8 @@
     <div class="modal">
       <button class="modal-close">&times;</button>
       <h2>IEEE Robotics Compliant Gripper</h2>
-      <p>Led the mechanical design of a compliant gripping mechanism for an IEEE robotics competition. The design used a single motor to reduce software and sensor complexity, solving the gripping problem through mechanical ingenuity rather than additional electronics.</p>
+      <p>Led the mechanical design of a compliant gripper for an IEEE robotics competition.</p>
+      <p>How do you pick up and put down a game piece with only one motor? I used a compliant gripper that held the piece securely, then released it when the motor drove through the drop-off motion and broke a pencil-lead shear pin. The shear pin acted as a mechanical fuse, letting the gripper fail predictably instead of damaging the whole assembly.</p>
       <div class="modal-cols">
         <div>
           <strong>Design highlights</strong>
@@ -274,7 +242,13 @@
     <div class="modal">
       <button class="modal-close">&times;</button>
       <h2>Annual Fireworks Display</h2>
-      <p>Every year I put on a fireworks show for friends and family. It started as a small hobby and has grown into something the whole neighborhood looks forward to: nearly 2,000 people came out to watch last year. I love picking out the shells, planning how the night will unfold, and watching everyone's reaction when it all comes together. There is something about the scale and the spectacle that has always drawn me in, and it is one of my favorite ways to cap off the year.</p>
+      <p>What started as a small backyard fireworks show in 2018 has slowly turned into something the whole neighborhood looks forward to. Last year, close to 2,000 people attended. As it has grown, I have had to take the safety and planning side much more seriously.</p>
+      <div class="pcsr">
+        <p>The show usually uses around 90 mortars, and another 15 to 30 cakes. The runtime changes year to year. The shortest show was about 10 minutes, and the longest was a little over 25.</p>
+        <p>The firing platform is set up over open water, which gives a natural standoff distance, a safe place for debris to land, and allows more people to watch from their road end docks, or front yards. Firing is handled remotely, so nobody is near the platform during the show. I also clear the date (typically Independence Day) with the local police chief beforehand.</p>
+        <p>Everything I use is consumer-grade, so it stays within normal local rules and does not require pyrotechnician licensing or special permits.</p>
+        <p>For me, the best part is picking the shells, building the sequence, and obsessing over pacing. It is still my favorite way to close out the summer.</p>
+      </div>
       <div class="modal-images modal-images-2col">
         <img src="Images/fireworks.jpeg" alt="Fireworks display" />
         <img src="Images/fireworks2.jpg" alt="Fireworks shells staged on a dock over the lake before the show" />
@@ -287,26 +261,11 @@
     <div class="modal">
       <button class="modal-close">&times;</button>
       <h2>Lipscomb University Microhome</h2>
-      <p>As part of Lipscomb University's Introduction to Engineering course in fall 2022, I worked with thirteen fellow freshman mechanical engineering students to design and build a 12×7 ft microhome. The structure was engineered to run on either grid power or solar energy and was donated to Second Chance Ministries in Hurricane Mills, Tennessee, to provide emergency shelter for individuals displaced by the devastating 2021 floods in Waverly.</p>
-      <div class="modal-cols">
-        <div>
-          <strong>Engineering skills applied</strong>
-          <ul>
-            <li>Trigonometry for truss angle calculations</li>
-            <li>Structural framing and "building square" techniques</li>
-            <li>Material selection and procurement</li>
-            <li>Dual-power system (grid and solar)</li>
-          </ul>
-        </div>
-        <div>
-          <strong>Design adaptations</strong>
-          <ul>
-            <li>Mothers with infants</li>
-            <li>Homeless students</li>
-            <li>Individuals with visual impairment</li>
-            <li>Wheelchair users</li>
-          </ul>
-        </div>
+      <div class="pcsr">
+        <p>The 2021 floods in Waverly, Tennessee displaced a lot of families, and Second Chance Ministries was trying to put together emergency shelter for them.</p>
+        <p>Built in one semester, with a team of fourteen freshman mechanical engineers. It had to run on either grid power or solar, and the design needed to accommodate: mothers with infants, homeless students, someone in a wheelchair, or someone with limited vision.</p>
+        <p>I was the only CAD modeler on the project, so every dimension and how the parts came together ran through my work. The build itself involved trig for the truss angles, procurement for non-donated parts, and dual-power wiring for its solar and grid modes.</p>
+        <p>Finished in one semester, delivered, and donated to Second Chance Ministries. <a href="https://lipscomb.edu/news/microhome-built-students-will-have-macro-impact" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Lipscomb's news</a> covered the project.</p>
       </div>
       <div class="modal-images modal-images-3col">
         <img src="Images/microhome_cad.avif" alt="Microhome CAD design" />
