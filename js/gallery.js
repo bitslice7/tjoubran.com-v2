@@ -110,6 +110,10 @@
     const previousButton = carousel.querySelector('[data-gallery-prev]');
     const nextButton = carousel.querySelector('[data-gallery-next]');
     const position = carousel.querySelector('[data-gallery-position]');
+    const edgeTolerance = 4;
+    let carouselTouchStartX = 0;
+    let touchStartedAtStart = false;
+    let touchStartedAtEnd = false;
 
     function carouselMetrics() {
       const cards = Array.from(track.querySelectorAll('.gallery-item'));
@@ -127,19 +131,51 @@
       const { cards, firstIndex, visibleCount } = carouselMetrics();
       if (!cards.length) return;
       const lastVisible = Math.min(cards.length, firstIndex + visibleCount);
-      const edgeTolerance = 4;
-      previousButton.disabled = track.scrollLeft <= edgeTolerance;
-      nextButton.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - edgeTolerance;
       position.textContent = `${firstIndex + 1}–${lastVisible} of ${cards.length}`;
     }
 
+    function jumpCarousel(left) {
+      track.style.scrollBehavior = 'auto';
+      track.style.scrollSnapType = 'none';
+      track.scrollLeft = left;
+      void track.offsetWidth;
+      requestAnimationFrame(() => {
+        track.style.removeProperty('scroll-behavior');
+        track.style.removeProperty('scroll-snap-type');
+        updateCarousel();
+      });
+    }
+
     function moveCarousel(direction) {
+      const maximumScroll = track.scrollWidth - track.clientWidth;
+      const atStart = track.scrollLeft <= edgeTolerance;
+      const atEnd = track.scrollLeft >= maximumScroll - edgeTolerance;
+
+      if (direction > 0 && atEnd) {
+        jumpCarousel(0);
+        return;
+      }
+      if (direction < 0 && atStart) {
+        jumpCarousel(maximumScroll);
+        return;
+      }
       track.scrollBy({ left: direction * track.clientWidth, behavior: 'smooth' });
     }
 
     previousButton.addEventListener('click', () => moveCarousel(-1));
     nextButton.addEventListener('click', () => moveCarousel(1));
     track.addEventListener('scroll', updateCarousel, { passive: true });
+    track.addEventListener('touchstart', (event) => {
+      const maximumScroll = track.scrollWidth - track.clientWidth;
+      carouselTouchStartX = event.touches[0].clientX;
+      touchStartedAtStart = track.scrollLeft <= edgeTolerance;
+      touchStartedAtEnd = track.scrollLeft >= maximumScroll - edgeTolerance;
+    }, { passive: true });
+    track.addEventListener('touchend', (event) => {
+      const difference = carouselTouchStartX - event.changedTouches[0].clientX;
+      if (difference > 50 && touchStartedAtEnd) moveCarousel(1);
+      if (difference < -50 && touchStartedAtStart) moveCarousel(-1);
+    }, { passive: true });
     track.addEventListener('keydown', (event) => {
       if (event.target !== track) return;
       if (event.key === 'ArrowLeft') {
