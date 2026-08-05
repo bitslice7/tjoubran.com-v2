@@ -656,6 +656,7 @@ body {
   object-fit: cover;
   aspect-ratio: 4 / 3;
   display: block;
+  cursor: zoom-in;
 }
 .modal-caption {
   margin-top: 0.75rem;

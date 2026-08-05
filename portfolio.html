@@ -149,16 +149,8 @@
           </ul>
         </div>
       </div>
-      <div class="modal-images modal-images-3col">
-        <img src="Images/eaglegoodsmol.jpg" alt="Eagle Nebula" />
-        <img src="Images/Whirlpool Galaxy.jpg" alt="Whirlpool Galaxy" />
-        <img src="Images/Dumbbell Nebula smol.jpg" alt="Dumbbell Nebula" />
-        <img src="Images/smallm81.jpg" alt="Bode's Galaxy" />
-        <img src="Images/Total Solar Eclipse.jpg" alt="Total Solar Eclipse" />
-        <img src="Images/Partial Solar Eclipse.jpg" alt="Partial Solar Eclipse" />
-        <img src="Images/Pleiades.jpg" alt="Pleiades Star Cluster" />
-      </div>
-      <p class="modal-caption">Click any image to view fullscreen. Eagle Nebula, Whirlpool Galaxy, Dumbbell Nebula, Bode's Galaxy, Total Solar Eclipse, Partial Solar Eclipse, Pleiades.</p>
+      <div class="modal-images modal-images-3col" data-site-gallery="images"></div>
+      <p class="modal-caption" data-site-gallery-caption></p>
     </div>
   </div>
 
@@ -281,6 +273,7 @@
   </footer>
 
   <script defer src="js/main.js"></script>
+  <script defer src="js/gallery.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
 
@@ -311,107 +304,9 @@
       });
     });
 
-    // ── Image lightbox ────────────────────────────────────────────
-    const lb = document.createElement('div');
-    lb.className = 'lightbox';
-    lb.style.zIndex = '99999';
-
-    const lbCloseBtn = document.createElement('button');
-    lbCloseBtn.className = 'lightbox-close';
-    lbCloseBtn.innerHTML = '&times;';
-
-    const lbCounter = document.createElement('div');
-    lbCounter.className = 'lightbox-counter';
-
-    const lbImg = document.createElement('img');
-    lbImg.className = 'lightbox-img';
-
-    const lbCaption = document.createElement('div');
-    lbCaption.className = 'lightbox-caption';
-
-    const lbNav = document.createElement('div');
-    lbNav.className = 'lightbox-nav';
-
-    const lbLeft = document.createElement('button');
-    lbLeft.className = 'lightbox-nav-btn';
-    lbLeft.innerHTML = '&#8592; Prev';
-
-    const lbRight = document.createElement('button');
-    lbRight.className = 'lightbox-nav-btn';
-    lbRight.innerHTML = 'Next &#8594;';
-
-    lbNav.appendChild(lbLeft);
-    lbNav.appendChild(lbRight);
-
-    lb.appendChild(lbCloseBtn);
-    lb.appendChild(lbCounter);
-    lb.appendChild(lbImg);
-    lb.appendChild(lbCaption);
-    lb.appendChild(lbNav);
-    document.body.appendChild(lb);
-
-    let lbSources = [];
-    let lbIndex = 0;
-    let lbKeyHandler;
-
-    function lbShow(index) {
-      lbIndex = (index + lbSources.length) % lbSources.length;
-      lbImg.style.opacity = '0';
-      setTimeout(() => {
-        lbImg.src = lbSources[lbIndex].src;
-        lbImg.alt = lbSources[lbIndex].alt;
-        lbCaption.textContent = lbSources[lbIndex].alt;
-        lbCounter.textContent = (lbIndex + 1) + ' / ' + lbSources.length;
-        lbImg.style.opacity = '1';
-      }, 150);
-    }
-
-    function closeLb() {
-      lb.classList.remove('visible');
-      setTimeout(() => { lb.style.display = 'none'; }, 300);
-      document.removeEventListener('keydown', lbKeyHandler);
-    }
-
-    function lbOpen(images, startIndex) {
-      lbSources = Array.from(images).map(img => ({ src: img.src, alt: img.alt }));
-      lbShow(startIndex);
-      lb.style.display = 'flex';
-      requestAnimationFrame(() => lb.classList.add('visible'));
-      lbKeyHandler = (e) => {
-        if (e.key === 'ArrowLeft')  lbShow(lbIndex - 1);
-        if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
-        if (e.key === 'Escape')     closeLb();
-      };
-      document.addEventListener('keydown', lbKeyHandler);
-    }
-
-    lbCloseBtn.addEventListener('click', closeLb);
-    lbLeft.addEventListener('click',  (e) => { e.stopPropagation(); lbShow(lbIndex - 1); });
-    lbRight.addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbIndex + 1); });
-    lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
-
-    // Swipe support
-    let touchStartX = 0;
-    lb.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener('touchend', (e) => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) lbShow(diff > 0 ? lbIndex + 1 : lbIndex - 1);
-    }, { passive: true });
-
-    // Attach click to every modal image
-    document.querySelectorAll('.modal-images img').forEach((img, _, all) => {
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const siblings = img.closest('.modal-images').querySelectorAll('img');
-        const idx = Array.from(siblings).indexOf(img);
-        lbOpen(siblings, idx);
-      });
-    });
-
     // ── Esc closes modal too ──────────────────────────────────────
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape')
+      if (e.key === 'Escape' && !document.querySelector('.lightbox.visible'))
         document.querySelectorAll('.modal-overlay.visible').forEach(closeModal);
     });
   });
