@@ -14,12 +14,7 @@
   function renderGalleries() {
     document.querySelectorAll('[data-site-gallery]').forEach((container) => {
       const cards = container.dataset.siteGallery === 'cards';
-      const requestedLimit = Number.parseInt(container.dataset.galleryLimit, 10);
-      const isExpanded = container.dataset.galleryExpanded === 'true';
-      const visibleItems = Number.isFinite(requestedLimit) && !isExpanded
-        ? galleryItems.slice(0, requestedLimit)
-        : galleryItems;
-      const elements = visibleItems.map((item) => {
+      const elements = galleryItems.map((item) => {
         const image = document.createElement('img');
         image.src = item.src;
         image.alt = item.alt;
@@ -110,23 +105,54 @@
     openLightbox(group, images.indexOf(clickedImage), clickedImage.closest('.gallery-item') || clickedImage);
   });
 
-  document.querySelectorAll('[data-gallery-toggle]').forEach((button) => {
-    const gallery = document.querySelector('[data-site-gallery][data-gallery-limit]');
-    if (!gallery) {
-      button.hidden = true;
-      return;
+  document.querySelectorAll('[data-gallery-carousel-track]').forEach((track) => {
+    const carousel = track.closest('.gallery-carousel');
+    const previousButton = carousel.querySelector('[data-gallery-prev]');
+    const nextButton = carousel.querySelector('[data-gallery-next]');
+    const position = carousel.querySelector('[data-gallery-position]');
+
+    function carouselMetrics() {
+      const cards = Array.from(track.querySelectorAll('.gallery-item'));
+      const firstCard = cards[0];
+      if (!firstCard) return { cards, firstIndex: 0, visibleCount: 0 };
+
+      const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
+      const step = firstCard.getBoundingClientRect().width + gap;
+      const firstIndex = Math.max(0, Math.min(cards.length - 1, Math.round(track.scrollLeft / step)));
+      const visibleCount = Math.max(1, Math.floor((track.clientWidth + gap) / step));
+      return { cards, firstIndex, visibleCount };
     }
 
-    button.textContent = `View all ${galleryItems.length} photographs`;
-    button.addEventListener('click', () => {
-      const expanded = gallery.dataset.galleryExpanded !== 'true';
-      gallery.dataset.galleryExpanded = String(expanded);
-      button.setAttribute('aria-expanded', String(expanded));
-      button.textContent = expanded
-        ? 'Show featured photographs'
-        : `View all ${galleryItems.length} photographs`;
-      renderGalleries();
+    function updateCarousel() {
+      const { cards, firstIndex, visibleCount } = carouselMetrics();
+      if (!cards.length) return;
+      const lastVisible = Math.min(cards.length, firstIndex + visibleCount);
+      const edgeTolerance = 4;
+      previousButton.disabled = track.scrollLeft <= edgeTolerance;
+      nextButton.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - edgeTolerance;
+      position.textContent = `${firstIndex + 1}–${lastVisible} of ${cards.length}`;
+    }
+
+    function moveCarousel(direction) {
+      track.scrollBy({ left: direction * track.clientWidth, behavior: 'smooth' });
+    }
+
+    previousButton.addEventListener('click', () => moveCarousel(-1));
+    nextButton.addEventListener('click', () => moveCarousel(1));
+    track.addEventListener('scroll', updateCarousel, { passive: true });
+    track.addEventListener('keydown', (event) => {
+      if (event.target !== track) return;
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        moveCarousel(-1);
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        moveCarousel(1);
+      }
     });
+    window.addEventListener('resize', updateCarousel);
+    requestAnimationFrame(updateCarousel);
   });
 
   document.addEventListener('keydown', (event) => {

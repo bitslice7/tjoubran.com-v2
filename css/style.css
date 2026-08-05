@@ -310,7 +310,6 @@ button:focus-visible,
 .contact { padding: 7rem 2rem; background: var(--bg); text-align: center; }
 .contact a { color: #fff; text-decoration: underline; }
 .contact p { margin-bottom: 0.5rem; }
-.contact-intro { color: var(--muted); margin: 0 auto 1.5rem; max-width: 620px; }
 
 /* Footer */
 .site-footer { text-align: center; padding: 2rem; background: var(--bg); border-top: 1px solid var(--border); color: var(--muted); }
@@ -331,14 +330,24 @@ button:focus-visible,
   color: var(--muted);
   font-size: 1.05rem;
 }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-  gap: 1.25rem;
+.gallery-carousel {
   max-width: 1100px;
   margin: 0 auto;
 }
+
+.gallery-grid {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 0.15rem 0.15rem 1rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: #555 #000;
+  scrollbar-width: thin;
+}
 .gallery-item {
+  flex: 0 0 calc((100% - 2.5rem) / 3);
   position: relative;
   overflow: hidden;
   border-radius: 0.75rem;
@@ -346,6 +355,8 @@ button:focus-visible,
   cursor: pointer;
   background: #111;
   margin: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 .gallery-item img {
   width: 100%;
@@ -373,6 +384,112 @@ button:focus-visible,
 .gallery-item:hover figcaption,
 .gallery-item:focus-visible figcaption {
   transform: translateY(0);
+}
+
+.gallery-carousel-controls {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.gallery-carousel-button {
+  background: #000;
+  border: 1px solid #555;
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.gallery-carousel-button:hover:not(:disabled) {
+  background: #fff;
+  color: #000;
+}
+
+.gallery-carousel-button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.gallery-carousel-position {
+  color: #aaa;
+  font-size: 0.82rem;
+  min-width: 5.5rem;
+  text-align: center;
+}
+
+.gear-section {
+  border-top: 1px solid #222;
+  margin: 4.5rem auto 0;
+  max-width: 900px;
+  padding-top: 2.5rem;
+}
+
+.gear-heading {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.gear-heading h3 {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.gear-heading p {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.gear-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  list-style: none;
+}
+
+.gear-item {
+  align-items: baseline;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+}
+
+.gear-item:nth-child(odd) {
+  padding-right: 1.5rem;
+}
+
+.gear-item:nth-child(even) {
+  border-left: 1px solid #1a1a1a;
+  padding-left: 1.5rem;
+}
+
+.gear-type {
+  color: #888;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.gear-item strong {
+  color: #fff;
+  font-size: 0.92rem;
+  text-align: right;
+}
+
+.gear-item small {
+  color: #888;
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  margin-top: 0.1rem;
 }
 
 /* Lightbox */
@@ -814,6 +931,7 @@ button:focus-visible,
   .featured-project-grid {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   }
+  .gallery-item { flex-basis: calc((100% - 1.25rem) / 2); }
 }
 
 @media (max-width: 600px) {
@@ -823,6 +941,13 @@ button:focus-visible,
   .gallery,
   .contact,
   .portfolio-projects { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .gallery-item { flex-basis: 88%; }
+  .gallery-carousel-controls { gap: 0.6rem; }
+  .gallery-carousel-button { padding-inline: 0.8rem; }
+  .gear-heading { align-items: flex-start; flex-direction: column; gap: 0.2rem; }
+  .gear-list { grid-template-columns: 1fr; }
+  .gear-item:nth-child(odd),
+  .gear-item:nth-child(even) { border-left: 0; padding-left: 0; padding-right: 0; }
   .project-impact-grid { grid-template-columns: 1fr; }
   .modal-cols { grid-template-columns: 1fr; }
   .modal-images-2col { grid-template-columns: 1fr; }

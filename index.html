@@ -50,8 +50,7 @@
 
   <section id="work" class="featured-work">
     <div class="section-heading">
-      <p class="eyebrow">Selected work</p>
-      <h2 class="section-title">Engineering, systems, and preservation</h2>
+      <h2 class="section-title">Selected Work</h2>
       <p>Projects that show how I approach data, hardware, mechanical design, and long-term stewardship.</p>
     </div>
 
@@ -97,19 +96,58 @@
 
   <section id="gallery" class="gallery">
     <div class="section-heading">
-      <p class="eyebrow">Astrophotography</p>
-      <h2 class="section-title">A different kind of systems work</h2>
+      <h2 class="section-title">Astrophotography</h2>
       <p class="gallery-description">A selection of celestial objects captured through telescope setup, alignment, calibration, and patient imaging sessions.</p>
     </div>
-    <div class="gallery-grid" data-site-gallery="cards" data-gallery-limit="4"></div>
-    <div class="section-action">
-      <button class="button button-secondary" type="button" data-gallery-toggle aria-expanded="false">View all photography</button>
+    <div class="gallery-carousel">
+      <div class="gallery-grid" id="photography-carousel" data-site-gallery="cards" data-gallery-carousel-track tabindex="0" aria-label="Astrophotography carousel"></div>
+      <div class="gallery-carousel-controls">
+        <button class="gallery-carousel-button" type="button" data-gallery-prev aria-controls="photography-carousel" aria-label="Show previous photographs">&#8592; Previous</button>
+        <span class="gallery-carousel-position" data-gallery-position aria-live="polite"></span>
+        <button class="gallery-carousel-button" type="button" data-gallery-next aria-controls="photography-carousel" aria-label="Show next photographs">Next &#8594;</button>
+      </div>
+    </div>
+
+    <div class="gear-section" id="gear">
+      <div class="gear-heading">
+        <h3>Gear</h3>
+        <p>Current astrophotography setup</p>
+      </div>
+      <ul class="gear-list">
+        <li class="gear-item">
+          <span class="gear-type">Optical tube</span>
+          <strong>Celestron C8</strong>
+        </li>
+        <li class="gear-item">
+          <span class="gear-type">Wide-field optics</span>
+          <strong>HyperStar <small>For nebula season</small></strong>
+        </li>
+        <li class="gear-item">
+          <span class="gear-type">Mount</span>
+          <strong>EQ6-R Pro</strong>
+        </li>
+        <li class="gear-item">
+          <span class="gear-type">Control</span>
+          <strong>ASIAIR Mini</strong>
+        </li>
+        <li class="gear-item">
+          <span class="gear-type">Main camera</span>
+          <strong>ZWO ASI533MC Pro</strong>
+        </li>
+        <li class="gear-item">
+          <span class="gear-type">Guide scope</span>
+          <strong>SVBONY 275 mm Guide Scope</strong>
+        </li>
+        <li class="gear-item">
+          <span class="gear-type">Guide camera</span>
+          <strong>ZWO ASI120MM Mini</strong>
+        </li>
+      </ul>
     </div>
   </section>
 
   <section id="contact" class="contact">
     <h2 class="section-title">Contact</h2>
-    <p class="contact-intro">Interested in aerospace, sensing, technical projects, or preservation work? I would be glad to connect.</p>
     <p><a href="mailto:tjoubran@wpi.edu">tjoubran@wpi.edu</a></p>
     <p>
       <a href="https://www.linkedin.com/in/thomas-joubran" target="_blank" rel="noopener" style="display:inline-block;vertical-align:middle;">
