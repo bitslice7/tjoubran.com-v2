@@ -109,11 +109,19 @@
     const carousel = track.closest('.gallery-carousel');
     const previousButton = carousel.querySelector('[data-gallery-prev]');
     const nextButton = carousel.querySelector('[data-gallery-next]');
+    const autoplayButton = carousel.querySelector('[data-gallery-autoplay]');
     const position = carousel.querySelector('[data-gallery-position]');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const edgeTolerance = 4;
+    const autoplayDelay = 4800;
     let carouselTouchStartX = 0;
     let touchStartedAtStart = false;
     let touchStartedAtEnd = false;
+    let autoplayRequested = !reducedMotion.matches;
+    let autoplayTimer = null;
+    let pointerPaused = false;
+    let focusPaused = false;
+    let wrapTimer = null;
 
     function carouselMetrics() {
       const cards = Array.from(track.querySelectorAll('.gallery-item'));
@@ -135,15 +143,21 @@
     }
 
     function jumpCarousel(left) {
-      track.style.scrollBehavior = 'auto';
-      track.style.scrollSnapType = 'none';
-      track.scrollLeft = left;
-      void track.offsetWidth;
-      requestAnimationFrame(() => {
-        track.style.removeProperty('scroll-behavior');
-        track.style.removeProperty('scroll-snap-type');
-        updateCarousel();
-      });
+      if (track.classList.contains('is-wrapping')) return;
+      track.classList.add('is-wrapping');
+      window.clearTimeout(wrapTimer);
+      wrapTimer = window.setTimeout(() => {
+        track.style.scrollBehavior = 'auto';
+        track.style.scrollSnapType = 'none';
+        track.scrollLeft = left;
+        void track.offsetWidth;
+        requestAnimationFrame(() => {
+          track.style.removeProperty('scroll-behavior');
+          track.style.removeProperty('scroll-snap-type');
+          track.classList.remove('is-wrapping');
+          updateCarousel();
+        });
+      }, reducedMotion.matches ? 0 : 180);
     }
 
     function moveCarousel(direction) {
@@ -162,11 +176,61 @@
       track.scrollBy({ left: direction * track.clientWidth, behavior: 'smooth' });
     }
 
-    previousButton.addEventListener('click', () => moveCarousel(-1));
-    nextButton.addEventListener('click', () => moveCarousel(1));
+    function stopAutoplayTimer() {
+      window.clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+
+    function scheduleAutoplay() {
+      stopAutoplayTimer();
+      if (!autoplayRequested || pointerPaused || focusPaused || document.hidden) return;
+      autoplayTimer = window.setInterval(() => moveCarousel(1), autoplayDelay);
+    }
+
+    function updateAutoplayControl() {
+      autoplayButton.textContent = autoplayRequested ? 'Pause' : 'Play';
+      autoplayButton.setAttribute(
+        'aria-label',
+        autoplayRequested ? 'Pause automatic carousel' : 'Play automatic carousel'
+      );
+      position.setAttribute('aria-live', autoplayRequested ? 'off' : 'polite');
+    }
+
+    function setAutoplay(requested) {
+      autoplayRequested = requested;
+      updateAutoplayControl();
+      scheduleAutoplay();
+    }
+
+    previousButton.addEventListener('click', () => {
+      moveCarousel(-1);
+      scheduleAutoplay();
+    });
+    nextButton.addEventListener('click', () => {
+      moveCarousel(1);
+      scheduleAutoplay();
+    });
+    autoplayButton.addEventListener('click', () => setAutoplay(!autoplayRequested));
+    carousel.addEventListener('mouseenter', () => {
+      pointerPaused = true;
+      stopAutoplayTimer();
+    });
+    carousel.addEventListener('mouseleave', () => {
+      pointerPaused = false;
+      scheduleAutoplay();
+    });
+    track.addEventListener('focusin', () => {
+      focusPaused = true;
+      stopAutoplayTimer();
+    });
+    track.addEventListener('focusout', () => {
+      focusPaused = false;
+      scheduleAutoplay();
+    });
     track.addEventListener('scroll', updateCarousel, { passive: true });
     track.addEventListener('touchstart', (event) => {
       const maximumScroll = track.scrollWidth - track.clientWidth;
+      stopAutoplayTimer();
       carouselTouchStartX = event.touches[0].clientX;
       touchStartedAtStart = track.scrollLeft <= edgeTolerance;
       touchStartedAtEnd = track.scrollLeft >= maximumScroll - edgeTolerance;
@@ -175,6 +239,7 @@
       const difference = carouselTouchStartX - event.changedTouches[0].clientX;
       if (difference > 50 && touchStartedAtEnd) moveCarousel(1);
       if (difference < -50 && touchStartedAtStart) moveCarousel(-1);
+      scheduleAutoplay();
     }, { passive: true });
     track.addEventListener('keydown', (event) => {
       if (event.target !== track) return;
@@ -187,8 +252,16 @@
         moveCarousel(1);
       }
     });
+    document.addEventListener('visibilitychange', scheduleAutoplay);
+    reducedMotion.addEventListener('change', (event) => {
+      if (event.matches) setAutoplay(false);
+    });
     window.addEventListener('resize', updateCarousel);
-    requestAnimationFrame(updateCarousel);
+    updateAutoplayControl();
+    requestAnimationFrame(() => {
+      updateCarousel();
+      scheduleAutoplay();
+    });
   });
 
   document.addEventListener('keydown', (event) => {
