@@ -8,28 +8,33 @@
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav">
-      <!-- Logo removed -->
-      <button id="menu-btn" class="menu-btn">&#9776;</button>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="site-name" href="#hero">Thomas Joubran</a>
+      <button id="menu-btn" class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+      <ul class="nav-links" id="primary-nav">
         <li><a href="#about">About</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#gallery">Photography</a></li>
+        <li><a href="portfolio.html">Engineering Portfolio</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
+  <main>
   <section id="hero" class="hero">
+    <p class="eyebrow">Aerospace engineering · space systems · technical projects</p>
     <h1>Thomas Joubran</h1>
-    <p>Astronautical Engineering Undergraduate at WPI</p>
-    <!-- Animated Down Chevron -->
-    <div class="scroll-arrow" id="scroll-arrow">
+    <p class="hero-lead">Astronautical Engineering Undergraduate at WPI</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="#work">Explore selected work</a>
+      <a class="button button-secondary" href="portfolio.html">View engineering portfolio</a>
+    </div>
+    <a class="scroll-arrow" id="scroll-arrow" href="#about" aria-label="Continue to About">
       <svg width="48" height="48" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M12 16l-6-6h12z" fill="currentColor" />
       </svg>
-    </div>
+    </a>
   </section>
 
   <section id="about" class="about about-split">
@@ -43,15 +48,68 @@
     </div>
   </section>
 
-  <!-- Gallery Section -->
+  <section id="work" class="featured-work">
+    <div class="section-heading">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="section-title">Engineering, systems, and preservation</h2>
+      <p>Projects that show how I approach data, hardware, mechanical design, and long-term stewardship.</p>
+    </div>
+
+    <div class="project-cards featured-project-grid">
+      <a class="project-preview-card" href="portfolio.html#modal-wpiwa-archive">
+        <div class="project-card-img archive-card-img" aria-hidden="true">
+          <span class="archive-number">116</span>
+          <span class="archive-label">years of radio history</span>
+        </div>
+        <div class="project-card-body">
+          <span class="project-card-category">Digital preservation</span>
+          <h3>WPIWA QSL Archive Migration</h3>
+          <p>Processing 8,000+ historical radio contact receipts from a 116-year analog database for archival preservation.</p>
+          <span class="project-card-cta">Read the case study &#8594;</span>
+        </div>
+      </a>
+
+      <a class="project-preview-card" href="portfolio.html#modal-iqp">
+        <div class="project-card-img" style="background-image: url('Images/Parks_Map.png')" aria-hidden="true"></div>
+        <div class="project-card-body">
+          <span class="project-card-category">Remote sensing &amp; GIS</span>
+          <h3>Forest Restoration Data</h3>
+          <p>Turned a five-year, multi-park restoration dataset into a clearer ArcGIS decision-making resource.</p>
+          <span class="project-card-cta">Read the case study &#8594;</span>
+        </div>
+      </a>
+
+      <a class="project-preview-card" href="portfolio.html#modal-onair">
+        <div class="project-card-img" style="background-image: url('Images/onair_deployed.jpeg')" aria-hidden="true"></div>
+        <div class="project-card-body">
+          <span class="project-card-category">Embedded systems</span>
+          <h3>ESP32 Presence Monitor</h3>
+          <p>A low-cost, always-on monitoring system combining sensing, filtering, signage, and Slack updates.</p>
+          <span class="project-card-cta">Read the case study &#8594;</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="section-action">
+      <a class="button button-secondary" href="portfolio.html">Explore all engineering projects</a>
+    </div>
+  </section>
+
   <section id="gallery" class="gallery">
-    <h2 class="section-title">Gallery</h2>
-    <p class="gallery-description">A selection of my astrophotography and favorite celestial objects. Click any image to view it fullscreen.</p>
-    <div class="gallery-grid" data-site-gallery="cards"></div>
+    <div class="section-heading">
+      <p class="eyebrow">Astrophotography</p>
+      <h2 class="section-title">A different kind of systems work</h2>
+      <p class="gallery-description">A selection of celestial objects captured through telescope setup, alignment, calibration, and patient imaging sessions.</p>
+    </div>
+    <div class="gallery-grid" data-site-gallery="cards" data-gallery-limit="4"></div>
+    <div class="section-action">
+      <button class="button button-secondary" type="button" data-gallery-toggle aria-expanded="false">View all photography</button>
+    </div>
   </section>
 
   <section id="contact" class="contact">
     <h2 class="section-title">Contact</h2>
+    <p class="contact-intro">Interested in aerospace, sensing, technical projects, or preservation work? I would be glad to connect.</p>
     <p><a href="mailto:tjoubran@wpi.edu">tjoubran@wpi.edu</a></p>
     <p>
       <a href="https://www.linkedin.com/in/thomas-joubran" target="_blank" rel="noopener" style="display:inline-block;vertical-align:middle;">
@@ -59,6 +117,7 @@
       </a>
     </p>
   </section>
+  </main>
 
   <footer class="site-footer">
     <p>Thomas Joubran - <span id="footer-year"></span></p>

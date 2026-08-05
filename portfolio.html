@@ -8,21 +8,25 @@
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav">
-      <button id="menu-btn" class="menu-btn">&#9776;</button>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="site-name" href="index.html">Thomas Joubran</a>
+      <button id="menu-btn" class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+      <ul class="nav-links" id="primary-nav">
         <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#gallery">Gallery</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#gallery">Photography</a></li>
+        <li><a href="portfolio.html" aria-current="page">Engineering Portfolio</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
+  <main>
   <!-- Hero -->
   <section class="portfolio-hero">
-    <h1>Thomas Joubran</h1>
+    <p class="eyebrow">Detailed project work</p>
+    <h1>Engineering Portfolio</h1>
+    <p>Selected work across remote sensing, embedded systems, mechanical design, digital preservation, and hands-on fabrication.</p>
   </section>
 
   <!-- Glider Banner -->
@@ -52,105 +56,117 @@
   <!-- A note before the projects -->
   <section class="why-section">
     <h2>A note before the projects</h2>
-    <p>Some of these were assigned, some were class projects, and one started as a hobby that got out of hand. They cover pretty different ground: running an embedded system in perpetuity, designing something to fail on purpose, cleaning a messy multi-year dataset, and owning the CAD on a team build that got finished and donated in a semester. Together they reflect the kind of engineering work I want to be doing.</p>
+    <p>Some of these were assigned, some were team projects, and others began as hands-on work for communities I care about. They cover different ground: preserving a century-spanning archive, running an embedded system in perpetuity, designing something to fail safely, cleaning a messy multi-year dataset, and owning the CAD on a team build completed in one semester. Together they reflect the kind of thoughtful, durable engineering work I want to do.</p>
   </section>
 
   <!-- Project Preview Cards -->
-  <section class="portfolio-projects">
+  <section class="portfolio-projects" id="projects">
 
-    <h2 class="project-group-title">Engineering Projects</h2>
+    <h2 class="project-group-title">Engineering &amp; Data Projects</h2>
     <div class="project-cards">
 
-      <div class="project-preview-card" data-modal="modal-iqp">
+      <a class="project-preview-card" href="#modal-wpiwa-archive" data-modal="modal-wpiwa-archive">
+        <div class="project-card-img archive-card-img" aria-hidden="true">
+          <span class="archive-number">116</span>
+          <span class="archive-label">years of radio history</span>
+        </div>
+        <div class="project-card-body">
+          <span class="project-card-category">Digital preservation</span>
+          <h3>WPIWA QSL Archive Migration</h3>
+          <p>Processing 8,000+ historical QSL contact receipts from a 116-year analog database for archival preservation.</p>
+          <span class="project-card-cta">Explore &#8594;</span>
+        </div>
+      </a>
+
+      <a class="project-preview-card" href="#modal-iqp" data-modal="modal-iqp">
         <div class="project-card-img" style="background-image: url('Images/Parks_Map.png')"></div>
         <div class="project-card-body">
           <h3>IQP: Remote Sensing &amp; ArcGIS</h3>
           <p>Five-year forest restoration dataset across 5 parks and ~343 hectares for the Greater Wellington Regional Council (team project).</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
-      </div>
+      </a>
 
-      <div class="project-preview-card" data-modal="modal-ieee">
+      <a class="project-preview-card" href="#modal-ieee" data-modal="modal-ieee">
         <div class="project-card-img" style="background-image: url('Images/gripper_demo.gif')"></div>
         <div class="project-card-body">
           <h3>IEEE Robotics Compliant Gripper</h3>
           <p>Single-motor compliant gripper with a shear-pin mechanical fuse. Seven prototypes; reset cut from 3 min to under 1.</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
-      </div>
+      </a>
 
-      <div class="project-preview-card" data-modal="modal-onair">
+      <a class="project-preview-card" href="#modal-onair" data-modal="modal-onair">
         <div class="project-card-img" style="background-image: url('Images/onair_deployed.jpeg')"></div>
         <div class="project-card-body">
           <h3>ESP32 Presence Monitoring System</h3>
           <p>~$30 BOM. Running 24/7 since deployment with zero false triggers thanks to a moving-average filter built in from day one.</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
-      </div>
+      </a>
 
-      <div class="project-preview-card" data-modal="modal-microhome">
+      <a class="project-preview-card" href="#modal-microhome" data-modal="modal-microhome">
         <div class="project-card-img" style="background-image: url('Images/microhome_cad.avif')"></div>
         <div class="project-card-body">
           <h3>Lipscomb Microhome</h3>
           <p>12×7 ft dual-power microhome built in one semester by a freshman team of 14 and donated for emergency shelter (team project).</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
-      </div>
+      </a>
 
     </div>
 
     <h2 class="project-group-title">Interests &amp; Hobbies</h2>
     <div class="project-cards">
 
-      <div class="project-preview-card" data-modal="modal-astro">
+      <a class="project-preview-card" href="index.html#gallery">
         <div class="project-card-img" style="background-image: url('Images/eagle_nebula.jpg')"></div>
         <div class="project-card-body">
           <h3>Amateur Astrophotography</h3>
           <p>Deep-sky imaging telescopes: setup, alignment, and calibration.</p>
-          <span class="project-card-cta">Explore &#8594;</span>
+          <span class="project-card-cta">View photography &#8594;</span>
         </div>
-      </div>
+      </a>
 
-      <div class="project-preview-card" data-modal="modal-fireworks">
+      <a class="project-preview-card" href="#modal-fireworks" data-modal="modal-fireworks">
         <div class="project-card-img" style="background-image: url('Images/fireworks.jpeg')"></div>
         <div class="project-card-body">
           <h3>Annual Fireworks Display</h3>
           <p>Yearly show I have been running since 2018. ~90 mortars over open water, remotely detonated; drew nearly 2,000 spectators last year.</p>
           <span class="project-card-cta">Explore &#8594;</span>
         </div>
-      </div>
+      </a>
 
     </div>
   </section>
 
   <!-- ===================== MODALS ===================== -->
 
-  <!-- Astrophotography Modal -->
-  <div class="modal-overlay" id="modal-astro">
+  <!-- WPIWA Archive Modal -->
+  <div class="modal-overlay" id="modal-wpiwa-archive">
     <div class="modal">
-      <button class="modal-close">&times;</button>
-      <h2>Amateur Astrophotography</h2>
-      <p>I build and operate deep-sky imaging telescopes. The work typically requires quick setup, alignment, calibration, and troubleshooting in order to maximize imaging uptime.</p>
-      <div class="modal-cols">
-        <div>
-          <strong>Relevance</strong>
-          <ul>
-            <li>Integrated multi-device software ecosystems</li>
-            <li>Tuned tracking for long exposures</li>
-            <li>Diagnosed alignment and calibration issues</li>
-          </ul>
+      <button class="modal-close" type="button" aria-label="Close WPIWA archive project">&times;</button>
+      <p class="modal-eyebrow">Digital preservation · WPI Wireless Association</p>
+      <h2>WPIWA QSL Archive Digital Migration</h2>
+      <div class="project-impact-grid" aria-label="Project scale">
+        <div class="project-impact">
+          <strong>116 years</strong>
+          <span>of analog records</span>
         </div>
-        <div>
-          <strong>Equipment</strong>
-          <ul>
-            <li>Telescope day and night operations</li>
-            <li>Multi-session imaging workflows</li>
-            <li>Image stacking and post-processing</li>
-          </ul>
+        <div class="project-impact">
+          <strong>8,000+</strong>
+          <span>historical QSL receipts</span>
+        </div>
+        <div class="project-impact">
+          <strong>1 archive</strong>
+          <span>prepared for digital preservation</span>
         </div>
       </div>
-      <div class="modal-images modal-images-3col" data-site-gallery="images"></div>
-      <p class="modal-caption" data-site-gallery-caption></p>
+      <div class="pcsr">
+        <p>The WPI Wireless Association has a 116-year analog database documenting radio contacts through historical QSL cards and receipts. I am processing more than 8,000 of those records as part of a digital migration for archival preservation.</p>
+        <p>The central challenge is scale and consistency: a century-spanning paper collection needs a repeatable processing workflow so its history can be preserved without losing the connection to the original records.</p>
+        <p>This work brings systems thinking to institutional memory—transforming a large analog collection into a more durable digital resource that can be maintained and used long after the physical records become fragile.</p>
+      </div>
     </div>
   </div>
 
@@ -267,6 +283,7 @@
       <p class="modal-caption">Faculty: Dr. David Elrod and Dr. Kirsten Dodson, Lipscomb University, Raymond B. Jones College of Engineering. Donated to Second Chance Ministries, founded by Shirley James.</p>
     </div>
   </div>
+  </main>
 
   <footer class="site-footer">
     <p>Thomas Joubran - <span id="footer-year"></span></p>
@@ -276,15 +293,35 @@
   <script defer src="js/gallery.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
+    let activeModalTrigger = null;
+
+    function openModal(modal, trigger, updateHash = true) {
+      if (!modal) return;
+      activeModalTrigger = trigger || null;
+      const dialog = modal.querySelector('.modal');
+      const heading = modal.querySelector('h2');
+      const closeButton = modal.querySelector('.modal-close');
+      dialog.setAttribute('role', 'dialog');
+      dialog.setAttribute('aria-modal', 'true');
+      dialog.setAttribute('aria-label', heading ? heading.textContent : 'Project details');
+      closeButton.type = 'button';
+      closeButton.setAttribute('aria-label', `Close ${heading ? heading.textContent : 'project details'}`);
+      modal.style.display = 'flex';
+      requestAnimationFrame(() => modal.classList.add('visible'));
+      document.body.style.overflow = 'hidden';
+      closeButton.focus();
+      if (updateHash && window.location.hash !== `#${modal.id}`) {
+        history.replaceState(null, '', `#${modal.id}`);
+      }
+    }
 
     // ── Project card → modal ──────────────────────────────────────
     document.querySelectorAll('.project-preview-card').forEach(card => {
-      card.addEventListener('click', () => {
+      if (!card.dataset.modal) return;
+      card.addEventListener('click', (event) => {
+        event.preventDefault();
         const modal = document.getElementById(card.dataset.modal);
-        if (!modal) return;
-        modal.style.display = 'flex';
-        requestAnimationFrame(() => modal.classList.add('visible'));
-        document.body.style.overflow = 'hidden';
+        openModal(modal, card);
       });
     });
 
@@ -292,6 +329,11 @@
       overlay.classList.remove('visible');
       setTimeout(() => { overlay.style.display = 'none'; }, 300);
       document.body.style.overflow = '';
+      if (window.location.hash === `#${overlay.id}`) {
+        history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+      }
+      activeModalTrigger?.focus();
+      activeModalTrigger = null;
     }
 
     document.querySelectorAll('.modal-close').forEach(btn => {
@@ -309,6 +351,15 @@
       if (e.key === 'Escape' && !document.querySelector('.lightbox.visible'))
         document.querySelectorAll('.modal-overlay.visible').forEach(closeModal);
     });
+
+    const hashTarget = window.location.hash
+      ? document.getElementById(window.location.hash.slice(1))
+      : null;
+    const initialModal = hashTarget?.classList.contains('modal-overlay') ? hashTarget : null;
+    if (initialModal) {
+      const trigger = document.querySelector(`[data-modal="${initialModal.id}"]`);
+      openModal(initialModal, trigger, false);
+    }
   });
   </script>
 </body>

@@ -12,9 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const hideArrowThreshold = 10;   // px scroll to hide chevron
   const mouseReveal = 50;          // px from top to reveal header
 
+  function setMenuOpen(open) {
+    navLinks.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+  }
+
   // Mobile nav toggle
   menuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
+    setMenuOpen(!navLinks.classList.contains('open'));
+  });
+
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false));
   });
 
   // Show/hide header and hide arrow after small scroll
@@ -30,12 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close mobile menu if scrolling down more than 20px
     if (navLinks.classList.contains('open') && currentY > lastScrollY + 20) {
-      navLinks.classList.remove('open');
+      setMenuOpen(false);
     }
 
     // Arrow hide logic
-    if (currentY > hideArrowThreshold && arrow) {
-      arrow.style.display = 'none';
+    if (arrow) {
+      arrow.style.display = currentY > hideArrowThreshold ? 'none' : '';
     }
 
     lastScrollY = currentY;
