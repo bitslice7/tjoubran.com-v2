@@ -434,6 +434,19 @@ button:focus-visible,
   margin-top: 0.1rem;
 }
 
+.gear-photo {
+  margin: 2.5rem auto 0;
+  max-width: 720px;
+}
+
+.gear-photo img {
+  border: 1px solid #222;
+  border-radius: 0.75rem;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
 /* Lightbox */
 .lightbox {
   position: fixed;
