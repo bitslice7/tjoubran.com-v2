@@ -679,10 +679,8 @@ dialog[open] { animation: dialog-in 0.25s ease; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Only the large, continuous motion is disabled; the 0.3s hover fill
+     and header slide are kept as they are part of the site's identity. */
   html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  .scroll-arrow { animation: none; }
 }
