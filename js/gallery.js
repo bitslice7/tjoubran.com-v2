@@ -17,12 +17,16 @@
     </div>
     <div class="lightbox-stage"><img class="lightbox-img" alt=""></div>
     <div class="lightbox-foot">
-      <button class="icon-btn lightbox-arrow lightbox-prev" type="button" aria-label="Previous image">&#8592;</button>
+      <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
       <div class="lightbox-caption">
         <strong class="lightbox-title"></strong>
         <span class="lightbox-meta"></span>
       </div>
-      <button class="icon-btn lightbox-arrow lightbox-next" type="button" aria-label="Next image">&#8594;</button>
+      <button class="lightbox-arrow lightbox-next" type="button" aria-label="Next image">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>`;
   document.body.append(lightbox);
 
