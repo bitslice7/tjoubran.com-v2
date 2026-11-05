@@ -47,89 +47,109 @@ section { scroll-margin-top: 5rem; }
 
 /* 2. Header & navigation ------------------------------------- */
 .site-header {
+  background: #000;
+  border-bottom: 1px solid #fff;
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
+  width: 100%;
+  z-index: 1000;
   transition: transform 0.3s ease;
 }
-.site-header.is-hidden { transform: translateY(-100%); }
-
 .nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  margin: 0 auto;
   padding: 0.5rem 1rem;
+  gap: 2rem;
 }
-
 .menu-btn {
-  display: none;
+  display: none; /* hide by default */
   font-size: 2rem;
-  line-height: 1;
   background: none;
   border: none;
-  color: var(--text);
+  color: #fff;
   cursor: pointer;
+  margin: 0;
 }
-
 .nav-links {
   list-style: none;
   display: flex;
   gap: 2rem;
+  position: static;
+  margin: 0; /* Remove any default margin */
 }
 .nav-links a {
+  position: relative;
   display: inline-block;
   padding: 0.75rem 1.5rem;
+  overflow: hidden;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  isolation: isolate;
+  transition: color 0.3s ease;
 }
-.nav-links a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--line); }
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #fff;
+  z-index: -1;
+  transition: height 0.3s ease;
+}
+.nav-links a:hover::before {
+  height: 100%;
+}
+.nav-links a:hover {
+  color: #000;
+}
+.nav-links a[aria-current="page"] {
+  box-shadow: inset 0 -2px 0 #fff;
+}
 
 /* 3. Shared pieces ------------------------------------------- */
 
-/* The top-bar hover: a white fill rises from the bottom and the text
-   inverts. Every clickable element on the site uses the same move. */
-.nav-links a,
+/* Buttons copy the menu-bar hover: a white fill rises from the bottom
+   and the text inverts. */
 .button,
 .icon-btn,
 .card-cta {
   position: relative;
-  isolation: isolate;
   overflow: hidden;
-  color: var(--text);
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
+  isolation: isolate;
   transition: color 0.3s ease;
 }
-.nav-links a::before,
 .button::before,
 .icon-btn::before,
 .card-cta::before {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
   bottom: 0;
+  left: 0;
+  width: 100%;
   height: 0;
-  background: var(--line);
+  background: #fff;
   z-index: -1;
   transition: height 0.3s ease;
 }
-.nav-links a:hover,
-.nav-links a:focus-visible,
-.button:hover,
-.button:focus-visible,
-.icon-btn:hover,
-.icon-btn:focus-visible,
-.card:hover .card-cta,
-.card:focus-visible .card-cta { color: var(--bg); }
-.nav-links a:hover::before,
-.nav-links a:focus-visible::before,
 .button:hover::before,
-.button:focus-visible::before,
 .icon-btn:hover::before,
-.icon-btn:focus-visible::before,
-.card:hover .card-cta::before,
-.card:focus-visible .card-cta::before { height: 100%; }
+.card:hover .card-cta::before {
+  height: 100%;
+}
+.button:hover,
+.icon-btn:hover,
+.card:hover .card-cta {
+  color: #000;
+}
 
 .button {
   display: inline-flex;
@@ -148,10 +168,9 @@ section { scroll-margin-top: 5rem; }
 .button svg { width: 1.1em; height: 1.1em; fill: currentColor; }
 
 /* Filled variant: starts white and the fill "lifts off" on hover */
-.button-primary { background: var(--line); color: var(--bg); }
-.button-primary::before { background: var(--bg); }
-.button-primary:hover,
-.button-primary:focus-visible { color: var(--text); }
+.button-primary { background: #fff; color: #000; }
+.button-primary::before { background: #000; }
+.button-primary:hover { color: #fff; }
 
 /* Square icon-only buttons (close, previous, next) */
 .icon-btn {
@@ -212,19 +231,24 @@ section { scroll-margin-top: 5rem; }
   margin-top: 2.25rem;
 }
 
+/* Animated Down Chevron */
 .scroll-arrow {
   position: absolute;
   bottom: 2rem;
   left: 50%;
+  transform: translateX(-50%);
   width: 3rem;
   height: 3rem;
-  color: var(--text);
+  color: #fff;
   opacity: 0.75;
   animation: scroll-down 3s infinite;
-  transition: opacity 0.3s ease;
+  cursor: pointer;
+  z-index: 500;
 }
-.scroll-arrow.is-hidden { opacity: 0; pointer-events: none; }
-.scroll-arrow svg { width: 100%; height: 100%; }
+.scroll-arrow svg {
+  width: 100%;
+  height: 100%;
+}
 
 @keyframes scroll-down {
   0%, 100% { transform: translate(-50%, 0); opacity: 1; }
@@ -635,24 +659,44 @@ dialog[open] { animation: dialog-in 0.25s ease; }
   .gear-photo { max-width: 480px; }
 }
 
+/* Mobile toggle for hamburger only on small screens */
 @media (max-width: 768px) {
-  .nav { flex-direction: column; }
-  .menu-btn { display: block; margin-bottom: 0.5rem; }
+  .nav {
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
+  .menu-btn {
+    display: block;
+    align-self: center;
+    margin-bottom: 0.5rem;
+  }
+  /* Hide nav links by default on mobile */
   .nav-links {
     display: none;
     flex-direction: column;
-    gap: 0;
     position: absolute;
-    top: 100%;
+    top: 100%; /* align directly below the header */
     left: 50%;
+    right: auto;
     transform: translateX(-50%);
-    width: max-content;
+    background: #000;
+    border: 1px solid #fff;
+    border-radius: 0;
     padding: 1rem;
-    background: var(--bg);
-    border: 1px solid var(--line);
+    gap: 0;
+    width: max-content;
+    box-shadow: none;
   }
-  .nav-links.open { display: flex; }
-  .nav-links a { display: block; padding: 0.75rem 1rem; text-align: center; }
+  /* Show nav links when menu is open */
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
 }
 
 @media (max-width: 600px) {

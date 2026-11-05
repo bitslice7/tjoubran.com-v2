@@ -1,37 +1,61 @@
-// Site-wide behaviour: header hide/show on scroll, mobile navigation,
-// project pop-ups (<dialog class="modal">), and the footer year.
-(() => {
-  const header = document.querySelector('.site-header');
-  const menuBtn = document.getElementById('menu-btn');
-  const navLinks = document.getElementById('primary-nav');
-  const scrollArrow = document.getElementById('scroll-arrow');
+// Toggle mobile navigation & hide/show header based on scroll direction
+// Immediate hide/show without delay + reveal when cursor enters top 50px
+// Also: project pop-ups (<dialog class="modal">) and the footer year.
 
-  // Mobile navigation --------------------------------------------------
-  const setMenuOpen = (open) => {
+document.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.getElementById('menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+  const header = document.querySelector('.site-header');
+  const arrow = document.getElementById('scroll-arrow');
+
+  let lastScrollY = window.scrollY;
+  const scrollThreshold = 5;       // px delta to reduce jitter
+  const hideArrowThreshold = 10;   // px scroll to hide chevron
+  const mouseReveal = 50;          // px from top to reveal header
+
+  function setMenuOpen(open) {
     navLinks.classList.toggle('open', open);
     menuBtn.setAttribute('aria-expanded', String(open));
-  };
-  menuBtn.addEventListener('click', () => setMenuOpen(!navLinks.classList.contains('open')));
-  navLinks.addEventListener('click', (event) => {
-    if (event.target.closest('a')) setMenuOpen(false);
+  }
+
+  // Mobile nav toggle
+  menuBtn.addEventListener('click', () => {
+    setMenuOpen(!navLinks.classList.contains('open'));
   });
 
-  // Header hides when scrolling down and returns when scrolling up or
-  // when the cursor nears the top edge. The hero arrow fades once scrolled.
-  let lastY = window.scrollY;
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false));
+  });
+
+  // Show/hide header and hide arrow after small scroll
   window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (y > lastY + 5) {
-      header.classList.add('is-hidden');
-      setMenuOpen(false);
-    } else if (y < lastY - 5) {
-      header.classList.remove('is-hidden');
+    const currentY = window.scrollY;
+
+    // Header logic
+    if (currentY > lastScrollY + scrollThreshold) {
+      header.style.transform = 'translateY(-100%)';
+    } else if (currentY < lastScrollY - scrollThreshold) {
+      header.style.transform = 'translateY(0)';
     }
-    scrollArrow?.classList.toggle('is-hidden', y > 10);
-    lastY = y;
-  }, { passive: true });
-  window.addEventListener('mousemove', (event) => {
-    if (event.clientY <= 50) header.classList.remove('is-hidden');
+
+    // Close mobile menu if scrolling down more than 20px
+    if (navLinks.classList.contains('open') && currentY > lastScrollY + 20) {
+      setMenuOpen(false);
+    }
+
+    // Arrow hide logic
+    if (arrow) {
+      arrow.style.display = currentY > hideArrowThreshold ? 'none' : '';
+    }
+
+    lastScrollY = currentY;
+  });
+
+  // Reveal header when cursor enters top 50px
+  window.addEventListener('mousemove', (e) => {
+    if (e.clientY <= mouseReveal) {
+      header.style.transform = 'translateY(0)';
+    }
   });
 
   // Project pop-ups ----------------------------------------------------
@@ -77,8 +101,8 @@
     if (dialog) openModal(dialog, false);
   });
 
-  // Footer year --------------------------------------------------------
+  // Dynamic footer year
   document.querySelectorAll('[data-year]').forEach((el) => {
     el.textContent = new Date().getFullYear();
   });
-})();
+});
