@@ -53,7 +53,8 @@ section { scroll-margin-top: 5rem; }
   top: 0;
   width: 100%;
   z-index: 1000;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
 }
 .nav {
   display: flex;
@@ -306,11 +307,27 @@ section { scroll-margin-top: 5rem; }
   transition: transform 0.5s ease;
 }
 .gallery-item:hover .gallery-media img { transform: scale(1.04); }
+/* Caption bar uses the menu-bar hover: white fill rises, text inverts */
 .gallery-caption {
+  position: relative;
   display: block;
+  overflow: hidden;
+  isolation: isolate;
   padding: 0.8rem 1rem 0.9rem;
-  border-top: 1px solid var(--line);
-  transition: background 0.3s ease, color 0.3s ease;
+  border-top: 1px solid #fff;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+.gallery-caption::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #fff;
+  z-index: -1;
+  transition: height 0.3s ease;
 }
 .gallery-caption strong { display: block; font-size: 0.95rem; }
 .gallery-caption span {
@@ -321,11 +338,11 @@ section { scroll-margin-top: 5rem; }
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  transition: color 0.3s ease;
 }
-.gallery-item:hover .gallery-caption,
-.gallery-item:focus-visible .gallery-caption { background: var(--line); color: var(--bg); }
-.gallery-item:hover .gallery-caption span,
-.gallery-item:focus-visible .gallery-caption span { color: #555; }
+.gallery-item:hover .gallery-caption::before { height: 100%; }
+.gallery-item:hover .gallery-caption { color: #000; }
+.gallery-item:hover .gallery-caption span { color: #555; }
 
 .gear {
   display: grid;

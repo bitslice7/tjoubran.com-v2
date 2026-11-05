@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const arrow = document.getElementById('scroll-arrow');
 
   let lastScrollY = window.scrollY;
-  const scrollThreshold = 5;       // px delta to reduce jitter
+  let travelled = 0;               // px moved in the current direction
+  let frameQueued = false;
+  const scrollThreshold = 24;      // px of travel in one direction before the header reacts
   const hideArrowThreshold = 10;   // px scroll to hide chevron
   const mouseReveal = 50;          // px from top to reveal header
 
@@ -27,29 +29,41 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => setMenuOpen(false));
   });
 
-  // Show/hide header and hide arrow after small scroll
-  window.addEventListener('scroll', () => {
-    const currentY = window.scrollY;
+  // Show/hide header and hide arrow after small scroll.
+  // Runs once per animation frame, needs a little sustained travel in one
+  // direction before reacting (so wheel jitter and small reversals do not
+  // flicker it), and ignores the rubber-band bounce at the page edges.
+  function updateHeader() {
+    frameQueued = false;
+    const maxY = document.documentElement.scrollHeight - window.innerHeight;
+    const currentY = Math.min(Math.max(window.scrollY, 0), Math.max(maxY, 0));
+    const delta = currentY - lastScrollY;
+    lastScrollY = currentY;
+
+    // Restart the tally whenever the direction changes
+    travelled = Math.sign(delta) === Math.sign(travelled) ? travelled + delta : delta;
 
     // Header logic
-    if (currentY > lastScrollY + scrollThreshold) {
-      header.style.transform = 'translateY(-100%)';
-    } else if (currentY < lastScrollY - scrollThreshold) {
+    if (currentY <= header.offsetHeight) {
       header.style.transform = 'translateY(0)';
-    }
-
-    // Close mobile menu if scrolling down more than 20px
-    if (navLinks.classList.contains('open') && currentY > lastScrollY + 20) {
-      setMenuOpen(false);
+    } else if (travelled > scrollThreshold) {
+      header.style.transform = 'translateY(-100%)';
+      if (navLinks.classList.contains('open')) setMenuOpen(false);
+    } else if (travelled < -scrollThreshold) {
+      header.style.transform = 'translateY(0)';
     }
 
     // Arrow hide logic
     if (arrow) {
       arrow.style.display = currentY > hideArrowThreshold ? 'none' : '';
     }
+  }
 
-    lastScrollY = currentY;
-  });
+  window.addEventListener('scroll', () => {
+    if (frameQueued) return;
+    frameQueued = true;
+    requestAnimationFrame(updateHeader);
+  }, { passive: true });
 
   // Reveal header when cursor enters top 50px
   window.addEventListener('mousemove', (e) => {
