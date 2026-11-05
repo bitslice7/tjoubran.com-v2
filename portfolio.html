@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Engineering portfolio of Thomas Joubran: remote sensing and GIS, embedded systems, mechanical design, digital preservation, and fabrication.">
+  <meta name="theme-color" content="#000000">
   <title>Portfolio | Thomas Joubran</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav" aria-label="Primary navigation">
+    <nav class="nav" aria-label="Primary">
       <button id="menu-btn" class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
       <ul class="nav-links" id="primary-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#work">Work</a></li>
         <li><a href="index.html#gallery">Gallery</a></li>
         <li><a href="portfolio.html" aria-current="page">Portfolio</a></li>
         <li><a href="index.html#contact">Contact</a></li>
@@ -22,197 +23,191 @@
   </header>
 
   <main>
-  <!-- Hero -->
-  <section class="portfolio-hero">
-    <p class="eyebrow">Detailed project work</p>
-    <h1>Engineering Portfolio</h1>
-    <p>Selected work across remote sensing, embedded systems, mechanical design, digital preservation, and hands-on fabrication.</p>
-  </section>
+    <section class="page-hero">
+      <p class="eyebrow">Detailed project work</p>
+      <h1>Engineering Portfolio</h1>
+      <p>Selected work across remote sensing, embedded systems, mechanical design, digital preservation, and hands-on fabrication.</p>
+    </section>
 
-  <!-- Glider Banner -->
-  <div class="portfolio-banner">
-    <img src="Images/glider.jpeg" alt="Thomas Joubran and WPI professor gliding" />
-    <p class="portfolio-banner-caption">Pictured: Myself (Left) and a WPI professor (Right) going gliding.</p>
-  </div>
+    <figure class="banner">
+      <img src="Images/glider.jpeg" alt="Thomas Joubran and a WPI professor seated in a glider cockpit" width="1536" height="1152">
+      <figcaption>Pictured: myself (left) and a WPI professor (right) going gliding.</figcaption>
+    </figure>
 
-  <!-- Mission Statement -->
-  <section class="portfolio-message">
-    <h2>My Mission Statement</h2>
-    <p>
-      I have always been inspired by space exploration; it is my belief that exploration is the most natural thing that comes to humans as a species.
-    </p>
-    <p>
-      Humans are at their best when they've climbed one peak, only to see the next one in the distance and feel the urge to keep going. That is the mentality that takes humans to space, to Mars, and eventually, beyond.
-    </p>
-    <p>
-      Someday, I would like to see Earth's entirety with my own eyes and perhaps even step on the surface of Mars. It is the whole reason why I study to become an aerospace engineer. I strive to build beautiful things, climb those mountains, and "boldly go where no man has gone before."
-    </p>
-    <p>
-      I am excited to show off some of my hobbies, projects, and work samples.
-    </p>
-    <p class="portfolio-signature">- Thomas</p>
-  </section>
+    <section class="prose">
+      <h2>My Mission Statement</h2>
+      <p>I have always been inspired by space exploration; it is my belief that exploration is the most natural thing that comes to humans as a species.</p>
+      <p>Humans are at their best when they've climbed one peak, only to see the next one in the distance and feel the urge to keep going. That is the mentality that takes humans to space, to Mars, and eventually, beyond.</p>
+      <p>Someday, I would like to see Earth's entirety with my own eyes and perhaps even step on the surface of Mars. It is the whole reason why I study to become an aerospace engineer. I strive to build beautiful things, climb those mountains, and "boldly go where no man has gone before."</p>
+      <p>I am excited to show off some of my hobbies, projects, and work samples.</p>
+      <p class="signature">- Thomas</p>
+    </section>
 
-  <!-- A note before the projects -->
-  <section class="why-section">
-    <h2>A note before the projects</h2>
-    <p>Some of these were assigned, some were team projects, and others began as hands-on work for communities I care about. They cover different ground: preserving a century-spanning archive, running an embedded system in perpetuity, designing something to fail safely, cleaning a messy multi-year dataset, and owning the CAD on a team build completed in one semester. Together they reflect the kind of thoughtful, durable engineering work I want to do.</p>
-  </section>
+    <section class="prose">
+      <h2>A note before the projects</h2>
+      <p>Some of these were assigned, some were team projects, and others began as hands-on work for communities I care about. They cover different ground: preserving a century-spanning archive, running an embedded system in perpetuity, designing something to fail safely, cleaning a messy multi-year dataset, and owning the CAD on a team build completed in one semester. Together they reflect the kind of thoughtful, durable engineering work I want to do.</p>
+    </section>
 
-  <!-- Project Preview Cards -->
-  <section class="portfolio-projects" id="projects">
+    <section class="projects" id="projects">
+      <div class="project-group">
+        <h2 class="group-title">Engineering &amp; Data Projects</h2>
+        <div class="card-grid">
 
-    <h2 class="project-group-title">Engineering &amp; Data Projects</h2>
-    <div class="project-cards">
+          <a class="card" href="#modal-wpiwa-archive" data-modal="modal-wpiwa-archive">
+            <div class="card-media archive-media" aria-hidden="true">
+              <span class="archive-number">116</span>
+              <span class="archive-label">years of radio history</span>
+            </div>
+            <div class="card-body">
+              <span class="eyebrow">Digital preservation</span>
+              <h3>WPIWA QSL Archive Migration</h3>
+              <p>Processing 8,000+ historical QSL contact receipts from a 116-year analog database for archival preservation.</p>
+            </div>
+            <span class="card-cta">Read the case study <span aria-hidden="true">&#8594;</span></span>
+          </a>
 
-      <a class="project-preview-card" href="#modal-wpiwa-archive" data-modal="modal-wpiwa-archive">
-        <div class="project-card-img archive-card-img" aria-hidden="true">
-          <span class="archive-number">116</span>
-          <span class="archive-label">years of radio history</span>
-        </div>
-        <div class="project-card-body">
-          <span class="project-card-category">Digital preservation</span>
-          <h3>WPIWA QSL Archive Migration</h3>
-          <p>Processing 8,000+ historical QSL contact receipts from a 116-year analog database for archival preservation.</p>
-          <span class="project-card-cta">Explore &#8594;</span>
-        </div>
-      </a>
+          <a class="card" href="#modal-iqp" data-modal="modal-iqp">
+            <div class="card-media"><img src="Images/parks_map.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="eyebrow">Remote sensing &amp; GIS</span>
+              <h3>IQP: Remote Sensing &amp; ArcGIS</h3>
+              <p>Five-year forest restoration dataset across 5 parks and ~343 hectares for the Greater Wellington Regional Council (team project).</p>
+            </div>
+            <span class="card-cta">Read the case study <span aria-hidden="true">&#8594;</span></span>
+          </a>
 
-      <a class="project-preview-card" href="#modal-iqp" data-modal="modal-iqp">
-        <div class="project-card-img" style="background-image: url('Images/Parks_Map.png')"></div>
-        <div class="project-card-body">
-          <h3>IQP: Remote Sensing &amp; ArcGIS</h3>
-          <p>Five-year forest restoration dataset across 5 parks and ~343 hectares for the Greater Wellington Regional Council (team project).</p>
-          <span class="project-card-cta">Explore &#8594;</span>
-        </div>
-      </a>
+          <a class="card" href="#modal-ieee" data-modal="modal-ieee">
+            <div class="card-media"><img src="Images/gripper_demo.gif" alt="" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="eyebrow">Mechanical design</span>
+              <h3>IEEE Robotics Compliant Gripper</h3>
+              <p>Single-motor compliant gripper with a shear-pin mechanical fuse. Seven prototypes; reset cut from 3 min to under 1.</p>
+            </div>
+            <span class="card-cta">Read the case study <span aria-hidden="true">&#8594;</span></span>
+          </a>
 
-      <a class="project-preview-card" href="#modal-ieee" data-modal="modal-ieee">
-        <div class="project-card-img" style="background-image: url('Images/gripper_demo.gif')"></div>
-        <div class="project-card-body">
-          <h3>IEEE Robotics Compliant Gripper</h3>
-          <p>Single-motor compliant gripper with a shear-pin mechanical fuse. Seven prototypes; reset cut from 3 min to under 1.</p>
-          <span class="project-card-cta">Explore &#8594;</span>
-        </div>
-      </a>
+          <a class="card" href="#modal-onair" data-modal="modal-onair">
+            <div class="card-media"><img src="Images/onair_deployed.jpeg" alt="" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="eyebrow">Embedded systems</span>
+              <h3>ESP32 Presence Monitoring System</h3>
+              <p>About $30 in parts. Running 24/7 since deployment with zero false triggers, using a moving-average filter for reliable occupancy detection.</p>
+            </div>
+            <span class="card-cta">Read the case study <span aria-hidden="true">&#8594;</span></span>
+          </a>
 
-      <a class="project-preview-card" href="#modal-onair" data-modal="modal-onair">
-        <div class="project-card-img" style="background-image: url('Images/onair_deployed.jpeg')"></div>
-        <div class="project-card-body">
-          <h3>ESP32 Presence Monitoring System</h3>
-          <p>About $30 in parts. Running 24/7 since deployment with zero false triggers, using a moving-average filter for reliable occupancy detection.</p>
-          <span class="project-card-cta">Explore &#8594;</span>
-        </div>
-      </a>
+          <a class="card" href="#modal-microhome" data-modal="modal-microhome">
+            <div class="card-media"><img src="Images/microhome_cad.avif" alt="" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="eyebrow">Fabrication &amp; CAD</span>
+              <h3>Lipscomb Microhome</h3>
+              <p>12×7 ft dual-power microhome built in one semester by a freshman team of 14 and donated for emergency shelter (team project).</p>
+            </div>
+            <span class="card-cta">Read the case study <span aria-hidden="true">&#8594;</span></span>
+          </a>
 
-      <a class="project-preview-card" href="#modal-microhome" data-modal="modal-microhome">
-        <div class="project-card-img" style="background-image: url('Images/microhome_cad.avif')"></div>
-        <div class="project-card-body">
-          <h3>Lipscomb Microhome</h3>
-          <p>12×7 ft dual-power microhome built in one semester by a freshman team of 14 and donated for emergency shelter (team project).</p>
-          <span class="project-card-cta">Explore &#8594;</span>
-        </div>
-      </a>
-
-    </div>
-
-    <h2 class="project-group-title">Interests &amp; Hobbies</h2>
-    <div class="project-cards">
-
-      <a class="project-preview-card" href="index.html#gallery">
-        <div class="project-card-img" style="background-image: url('Images/eagle_nebula.jpg')"></div>
-        <div class="project-card-body">
-          <h3>Amateur Astrophotography</h3>
-          <p>Deep-sky imaging telescopes: setup, alignment, and calibration.</p>
-          <span class="project-card-cta">View photography &#8594;</span>
-        </div>
-      </a>
-
-      <a class="project-preview-card" href="#modal-fireworks" data-modal="modal-fireworks">
-        <div class="project-card-img" style="background-image: url('Images/fireworks.jpeg')"></div>
-        <div class="project-card-body">
-          <h3>Annual Fireworks Display</h3>
-          <p>Yearly show I have been running since 2018. ~90 mortars over open water, remotely detonated; drew nearly 2,000 spectators last year.</p>
-          <span class="project-card-cta">Explore &#8594;</span>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ===================== MODALS ===================== -->
-
-  <!-- WPIWA Archive Modal -->
-  <div class="modal-overlay" id="modal-wpiwa-archive">
-    <div class="modal">
-      <button class="modal-close" type="button" aria-label="Close WPIWA archive project">&times;</button>
-      <p class="modal-eyebrow">Digital preservation · WPI Wireless Association</p>
-      <h2>WPIWA QSL Archive Digital Migration</h2>
-      <div class="project-impact-grid" aria-label="Project scale">
-        <div class="project-impact">
-          <strong>116 years</strong>
-          <span>of analog records</span>
-        </div>
-        <div class="project-impact">
-          <strong>8,000+</strong>
-          <span>historical QSL receipts</span>
-        </div>
-        <div class="project-impact">
-          <strong>1 archive</strong>
-          <span>prepared for digital preservation</span>
         </div>
       </div>
-      <div class="pcsr">
+
+      <div class="project-group">
+        <h2 class="group-title">Interests &amp; Hobbies</h2>
+        <div class="card-grid">
+
+          <a class="card" href="index.html#gallery">
+            <div class="card-media"><img src="Images/gallery/eagle-nebula-thumb.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="eyebrow">Astrophotography</span>
+              <h3>Amateur Astrophotography</h3>
+              <p>Deep-sky imaging telescopes: setup, alignment, and calibration.</p>
+            </div>
+            <span class="card-cta">View the gallery <span aria-hidden="true">&#8594;</span></span>
+          </a>
+
+          <a class="card" href="#modal-fireworks" data-modal="modal-fireworks">
+            <div class="card-media"><img src="Images/fireworks.jpeg" alt="" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="eyebrow">Pyrotechnics</span>
+              <h3>Annual Fireworks Display</h3>
+              <p>Yearly show I have been running since 2018. ~90 mortars over open water, remotely detonated; drew nearly 2,000 spectators last year.</p>
+            </div>
+            <span class="card-cta">Read more <span aria-hidden="true">&#8594;</span></span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Thomas Joubran &middot; <span data-year></span></p>
+  </footer>
+
+  <!-- Project pop-ups. Each is a native <dialog>; main.js opens them from
+       the matching data-modal card and mirrors the id in the URL hash. -->
+
+  <dialog class="modal" id="modal-wpiwa-archive" aria-labelledby="modal-wpiwa-archive-title">
+    <div class="modal-panel">
+      <button class="icon-btn modal-close" type="button" aria-label="Close">&times;</button>
+      <p class="eyebrow">Digital preservation · WPI Wireless Association</p>
+      <h2 id="modal-wpiwa-archive-title">WPIWA QSL Archive Digital Migration</h2>
+      <div class="impact-grid" aria-label="Project scale">
+        <div class="impact"><strong>116 years</strong><span>of analog records</span></div>
+        <div class="impact"><strong>8,000+</strong><span>historical QSL receipts</span></div>
+        <div class="impact"><strong>1 archive</strong><span>prepared for digital preservation</span></div>
+      </div>
+      <div class="modal-text">
         <p>I am digitizing more than 8,000 historical QSL cards and contact receipts from the WPI Wireless Association's 116-year analog archive.</p>
         <p>A consistent processing workflow preserves the collection as a durable, maintainable digital resource while retaining its connection to the original records.</p>
       </div>
     </div>
-  </div>
+  </dialog>
 
-  <!-- Presence Monitor Modal -->
-  <div class="modal-overlay" id="modal-onair">
-    <div class="modal">
-      <button class="modal-close">&times;</button>
-      <h2>ESP32 Presence Monitoring System</h2>
-      <div class="pcsr">
+  <dialog class="modal" id="modal-onair" aria-labelledby="modal-onair-title">
+    <div class="modal-panel">
+      <button class="icon-btn modal-close" type="button" aria-label="Close">&times;</button>
+      <p class="eyebrow">Embedded systems · WPI Wireless Association</p>
+      <h2 id="modal-onair-title">ESP32 Presence Monitoring System</h2>
+      <div class="modal-text">
         <p>I built an ESP32-based monitoring system for WPI Wireless Association's radio "Shack" to detect when the space is in use, control an ON AIR sign, and post status updates to Slack.</p>
         <p>The system uses a lux sensor for occupancy detection, a moving-average filter to reduce false triggers, relay-controlled signage, Slack API integration, and a 3D-printed enclosure. The design needed to be cheap, reliable enough to run unattended, and simple enough for other club members to maintain.</p>
         <p>So far, it has had no false triggers and has not gone down. During the school year, the Slack channel usually updates once or twice a day; over the summer, it slows to roughly once a week.</p>
       </div>
-      <div class="modal-images modal-images-3col">
-        <img src="Images/onair_bench.jpeg" alt="Presence monitor on the bench" />
-        <img src="Images/onair_enclosure.jpeg" alt="Presence monitor electronics inside the enclosure" />
-        <img src="Images/onair_deployed.jpeg" alt="Deployed ON AIR sign in the stairwell" />
+      <div class="modal-images cols-3">
+        <button class="zoom" type="button"><img src="Images/onair_bench.jpeg" alt="Presence monitor on the bench" loading="lazy"></button>
+        <button class="zoom" type="button"><img src="Images/onair_enclosure.jpeg" alt="Presence monitor electronics inside the enclosure" loading="lazy"></button>
+        <button class="zoom" type="button"><img src="Images/onair_deployed.jpeg" alt="Deployed ON AIR sign in the stairwell" loading="lazy"></button>
       </div>
     </div>
-  </div>
+  </dialog>
 
-  <!-- IQP Modal -->
-  <div class="modal-overlay" id="modal-iqp">
-    <div class="modal">
-      <button class="modal-close">&times;</button>
-      <h2>IQP: Remote Sensing, Excel, and ArcGIS Applications</h2>
-      <div class="pcsr">
+  <dialog class="modal" id="modal-iqp" aria-labelledby="modal-iqp-title">
+    <div class="modal-panel">
+      <button class="icon-btn modal-close" type="button" aria-label="Close">&times;</button>
+      <p class="eyebrow">Remote sensing &amp; GIS · Greater Wellington Regional Council</p>
+      <h2 id="modal-iqp-title">IQP: Remote Sensing, Excel, and ArcGIS Applications</h2>
+      <div class="modal-text">
         <p>Wellington's regional council had years of forest restoration data spread across five parks and wanted to know what it actually said. Were the plantings surviving? Could the data show how the program was progressing, and help justify future investment?</p>
         <p>My team had six months to work within a program that had already been running for 5–6 years. The scope covered hundreds of planting sites, roughly 343 hectares in total, and contractor survival audits that varied heavily in quality.</p>
         <p>I cleaned and organized multi-year contractor survival audit data, then used it to build an ArcGIS map covering the five regional parks. The map included park, planting area, and monitoring site layers, with survival and mortality metrics, custom survival data pop-ups, and attribute tables to make the data easier to interpret.</p>
         <p>I also researched possible next steps for future monitoring, including drone imagery, LiDAR canopy-height estimation, photogrammetry, and AI-assisted stem counting, along with the carbon credit and financing background tied to the restoration program.</p>
         <p>By the end, the council had a cleaner dataset, a map that made the survival data easier to understand, and a better idea of what remote-sensing tools might make sense as the project progresses.</p>
       </div>
-      <div class="modal-images modal-images-2col">
-        <img src="Images/Parks_Map.png" alt="Regional parks map" />
-        <img src="Images/QEP.png" alt="QEP data visualization" />
+      <div class="modal-images cols-2">
+        <button class="zoom" type="button"><img src="Images/parks_map.webp" alt="ArcGIS map of the five regional parks" loading="lazy"></button>
+        <button class="zoom" type="button"><img src="Images/QEP.png" alt="Queen Elizabeth Park survival data visualization" loading="lazy"></button>
       </div>
     </div>
-  </div>
+  </dialog>
 
-  <!-- IEEE Robotics Modal -->
-  <div class="modal-overlay" id="modal-ieee">
-    <div class="modal">
-      <button class="modal-close">&times;</button>
-      <h2>IEEE Robotics Compliant Gripper</h2>
-      <p>Led the mechanical design of a compliant gripper for an IEEE robotics competition.</p>
-      <p>How do you pick up and put down a game piece with only one motor? I used a compliant gripper that held the piece securely, then released it when the motor drove through the drop-off motion and broke a pencil-lead shear pin. The shear pin acted as a mechanical fuse, letting the gripper fail predictably instead of damaging the whole assembly.</p>
+  <dialog class="modal" id="modal-ieee" aria-labelledby="modal-ieee-title">
+    <div class="modal-panel">
+      <button class="icon-btn modal-close" type="button" aria-label="Close">&times;</button>
+      <p class="eyebrow">Mechanical design · IEEE robotics competition</p>
+      <h2 id="modal-ieee-title">IEEE Robotics Compliant Gripper</h2>
+      <div class="modal-text">
+        <p>Led the mechanical design of a compliant gripper for an IEEE robotics competition.</p>
+        <p>How do you pick up and put down a game piece with only one motor? I used a compliant gripper that held the piece securely, then released it when the motor drove through the drop-off motion and broke a pencil-lead shear pin. The shear pin acted as a mechanical fuse, letting the gripper fail predictably instead of damaging the whole assembly.</p>
+      </div>
       <div class="modal-cols">
         <div>
           <strong>Design highlights</strong>
@@ -233,133 +228,56 @@
           </ul>
         </div>
       </div>
-      <div class="modal-images modal-images-3col">
-        <img src="Images/gripper_demo.gif" alt="The compliant gripper picking up game pieces in competition" />
-        <img src="Images/gripper_mechanism.png" alt="CAD model of the compliant gripping mechanism" />
-        <img src="Images/gripper_shearpin.png" alt="CAD model of the shear-pin collar and retainer" />
+      <div class="modal-images cols-3">
+        <button class="zoom" type="button"><img src="Images/gripper_demo.gif" alt="The compliant gripper picking up game pieces in competition" loading="lazy"></button>
+        <button class="zoom" type="button"><img src="Images/gripper_mechanism.png" alt="CAD model of the compliant gripping mechanism" loading="lazy"></button>
+        <button class="zoom" type="button"><img src="Images/gripper_shearpin.png" alt="CAD model of the shear-pin collar and retainer" loading="lazy"></button>
       </div>
       <p class="modal-caption">The gripper in action, the compliant gripping mechanism, and the shear-pin collar and retainer.</p>
     </div>
-  </div>
+  </dialog>
 
-  <!-- Fireworks Modal -->
-
-  <div class="modal-overlay" id="modal-fireworks">
-    <div class="modal">
-      <button class="modal-close">&times;</button>
-      <h2>Annual Fireworks Display</h2>
-      <p>What started as a small backyard fireworks show in 2018 has slowly turned into something the whole neighborhood looks forward to. Last year, close to 2,000 people attended. As it has grown, I have had to take the safety and planning side much more seriously.</p>
-      <div class="pcsr">
+  <dialog class="modal" id="modal-fireworks" aria-labelledby="modal-fireworks-title">
+    <div class="modal-panel">
+      <button class="icon-btn modal-close" type="button" aria-label="Close">&times;</button>
+      <p class="eyebrow">Pyrotechnics · Since 2018</p>
+      <h2 id="modal-fireworks-title">Annual Fireworks Display</h2>
+      <div class="modal-text">
+        <p>What started as a small backyard fireworks show in 2018 has slowly turned into something the whole neighborhood looks forward to. Last year, close to 2,000 people attended. As it has grown, I have had to take the safety and planning side much more seriously.</p>
         <p>The show usually uses around 90 mortars, and another 15 to 30 cakes. The runtime changes year to year. The shortest show was about 10 minutes, and the longest was a little over 25.</p>
         <p>The firing platform is set up over open water, which gives a natural standoff distance, a safe place for debris to land, and allows more people to watch from their road end docks, or front yards. Firing is handled remotely, so nobody is near the platform during the show. I also clear the date (typically Independence Day) with the local police chief beforehand.</p>
         <p>Everything I use is consumer-grade, so it stays within normal local rules and does not require pyrotechnician licensing or special permits.</p>
         <p>For me, the best part is picking the shells, building the sequence, and obsessing over pacing. It is still my favorite way to close out the summer.</p>
       </div>
-      <div class="modal-images modal-images-2col">
-        <img src="Images/fireworks.jpeg" alt="Fireworks display" />
-        <img src="Images/fireworks2.jpg" alt="Fireworks shells staged on a dock over the lake before the show" />
+      <div class="modal-images cols-2">
+        <button class="zoom" type="button"><img src="Images/fireworks.jpeg" alt="Fireworks display over the water" loading="lazy"></button>
+        <button class="zoom" type="button"><img src="Images/fireworks2.webp" alt="Fireworks shells staged on a dock over the lake before the show" loading="lazy"></button>
       </div>
     </div>
-  </div>
+  </dialog>
 
-  <!-- Microhome Modal -->
-  <div class="modal-overlay" id="modal-microhome">
-    <div class="modal">
-      <button class="modal-close">&times;</button>
-      <h2>Lipscomb University Microhome</h2>
-      <div class="pcsr">
+  <dialog class="modal" id="modal-microhome" aria-labelledby="modal-microhome-title">
+    <div class="modal-panel">
+      <button class="icon-btn modal-close" type="button" aria-label="Close">&times;</button>
+      <p class="eyebrow">Fabrication &amp; CAD · Lipscomb University</p>
+      <h2 id="modal-microhome-title">Lipscomb University Microhome</h2>
+      <div class="modal-text">
         <p>The 2021 floods in Waverly, Tennessee displaced a lot of families, and Second Chance Ministries was trying to put together emergency shelter for them.</p>
         <p>Built in one semester, with a team of fourteen freshman mechanical engineers. It had to run on either grid power or solar, and the design needed to accommodate: mothers with infants, homeless students, someone in a wheelchair, or someone with limited vision.</p>
         <p>I was the only CAD modeler on the project, so every dimension and how the parts came together ran through my work. The build itself involved trig for the truss angles, procurement for non-donated parts, and dual-power wiring for its solar and grid modes.</p>
-        <p>Finished in one semester, delivered, and donated to Second Chance Ministries. <a href="https://lipscomb.edu/news/microhome-built-students-will-have-macro-impact" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Lipscomb's news</a> covered the project.</p>
+        <p>Finished in one semester, delivered, and donated to Second Chance Ministries. <a href="https://lipscomb.edu/news/microhome-built-students-will-have-macro-impact" target="_blank" rel="noopener">Lipscomb's news</a> covered the project.</p>
       </div>
-      <div class="modal-images modal-images-3col">
-        <img src="Images/microhome_cad.avif" alt="Microhome CAD design" />
-        <img src="Images/microhome_3.jpg" alt="Microhome framing under construction" />
-        <img src="Images/microhome_1.avif" alt="Microhome build photo" />
-        <img src="Images/microhome_2.avif" alt="Microhome build photo" />
+      <div class="modal-images cols-2">
+        <button class="zoom" type="button"><img src="Images/microhome_cad.avif" alt="Microhome CAD design" loading="lazy"></button>
+        <button class="zoom" type="button"><img src="Images/microhome_3.webp" alt="Microhome framing under construction" loading="lazy"></button>
+        <button class="zoom" type="button"><img src="Images/microhome_1.avif" alt="Microhome build photo" loading="lazy"></button>
+        <button class="zoom" type="button"><img src="Images/microhome_2.avif" alt="Microhome build photo" loading="lazy"></button>
       </div>
       <p class="modal-caption">Faculty: Dr. David Elrod and Dr. Kirsten Dodson, Lipscomb University, Raymond B. Jones College of Engineering. Donated to Second Chance Ministries, founded by Shirley James.</p>
     </div>
-  </div>
-  </main>
-
-  <footer class="site-footer">
-    <p>Thomas Joubran - <span id="footer-year"></span></p>
-  </footer>
+  </dialog>
 
   <script defer src="js/main.js"></script>
   <script defer src="js/gallery.js"></script>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    let activeModalTrigger = null;
-
-    function openModal(modal, trigger, updateHash = true) {
-      if (!modal) return;
-      activeModalTrigger = trigger || null;
-      const dialog = modal.querySelector('.modal');
-      const heading = modal.querySelector('h2');
-      const closeButton = modal.querySelector('.modal-close');
-      dialog.setAttribute('role', 'dialog');
-      dialog.setAttribute('aria-modal', 'true');
-      dialog.setAttribute('aria-label', heading ? heading.textContent : 'Project details');
-      closeButton.type = 'button';
-      closeButton.setAttribute('aria-label', `Close ${heading ? heading.textContent : 'project details'}`);
-      modal.style.display = 'flex';
-      requestAnimationFrame(() => modal.classList.add('visible'));
-      document.body.style.overflow = 'hidden';
-      closeButton.focus();
-      if (updateHash && window.location.hash !== `#${modal.id}`) {
-        history.replaceState(null, '', `#${modal.id}`);
-      }
-    }
-
-    // ── Project card → modal ──────────────────────────────────────
-    document.querySelectorAll('.project-preview-card').forEach(card => {
-      if (!card.dataset.modal) return;
-      card.addEventListener('click', (event) => {
-        event.preventDefault();
-        const modal = document.getElementById(card.dataset.modal);
-        openModal(modal, card);
-      });
-    });
-
-    function closeModal(overlay) {
-      overlay.classList.remove('visible');
-      setTimeout(() => { overlay.style.display = 'none'; }, 300);
-      document.body.style.overflow = '';
-      if (window.location.hash === `#${overlay.id}`) {
-        history.replaceState(null, '', window.location.pathname);
-      }
-      activeModalTrigger?.focus();
-      activeModalTrigger = null;
-    }
-
-    document.querySelectorAll('.modal-close').forEach(btn => {
-      btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay')));
-    });
-
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeModal(overlay);
-      });
-    });
-
-    // ── Esc closes modal too ──────────────────────────────────────
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !document.querySelector('.lightbox.visible'))
-        document.querySelectorAll('.modal-overlay.visible').forEach(closeModal);
-    });
-
-    const hashTarget = window.location.hash
-      ? document.getElementById(window.location.hash.slice(1))
-      : null;
-    const initialModal = hashTarget?.classList.contains('modal-overlay') ? hashTarget : null;
-    if (initialModal) {
-      const trigger = document.querySelector(`[data-modal="${initialModal.id}"]`);
-      openModal(initialModal, trigger, false);
-    }
-  });
-  </script>
 </body>
 </html>

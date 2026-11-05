@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thomas Joubran, aerospace engineering undergraduate at WPI. Engineering portfolio and astrophotography.">
+  <meta name="theme-color" content="#000000">
   <title>Thomas Joubran</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav" aria-label="Primary navigation">
+    <nav class="nav" aria-label="Primary">
       <button id="menu-btn" class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
       <ul class="nav-links" id="primary-nav">
         <li><a href="#hero">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#work">Work</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -22,143 +23,119 @@
   </header>
 
   <main>
-  <section id="hero" class="hero">
-    <h1>Thomas Joubran</h1>
-    <p class="hero-lead">Astronautical Engineering Undergraduate at WPI</p>
-    <div class="hero-actions">
-      <a class="button button-primary" href="#work">Explore selected work</a>
-      <a class="button button-secondary" href="portfolio.html">View engineering portfolio</a>
-    </div>
-    <a class="scroll-arrow" id="scroll-arrow" href="#about" aria-label="Continue to About">
-      <svg width="48" height="48" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M12 16l-6-6h12z" fill="currentColor" />
-      </svg>
-    </a>
-  </section>
+    <section id="hero" class="hero">
+      <h1>Thomas Joubran</h1>
+      <p class="hero-lead">Astronautical Engineering Undergraduate at WPI</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="portfolio.html">View engineering portfolio</a>
+        <a class="button" href="#gallery">See the astrophotography</a>
+      </div>
+      <a class="scroll-arrow" id="scroll-arrow" href="#about" aria-label="Continue to About">
+        <svg width="48" height="48" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 16l-6-6h12z" fill="currentColor" />
+        </svg>
+      </a>
+    </section>
 
-  <section id="about" class="about about-split">
-    <div class="about-text">
+    <section id="about" class="about">
       <h2 class="section-title">About</h2>
       <p>Thomas is an undergraduate student at Worcester Polytechnic Institute pursuing a B.S. in Aerospace Engineering and graduating May 2027.</p>
       <p>He is passionate about space exploration and technology, with a technical focus on space systems, Earth observation, remote sensing, GIS, and imaging systems. He is actively involved in projects spanning aerospace engineering, science, STEM outreach, and astronomy.</p>
-    </div>
-    <div class="about-image">
-      <!-- Replace the src with your own image if desired -->
-    </div>
-  </section>
+    </section>
 
-  <section id="work" class="featured-work">
-    <div class="section-heading">
-      <h2 class="section-title">Selected Work</h2>
-      <p>Projects that show how I approach data, hardware, mechanical design, and long-term stewardship.</p>
-    </div>
-
-    <div class="project-cards featured-project-grid">
-      <a class="project-preview-card" href="portfolio.html#modal-onair">
-        <div class="project-card-img" style="background-image: url('Images/onair_deployed.jpeg')" aria-hidden="true"></div>
-        <div class="project-card-body">
-          <span class="project-card-category">Embedded systems</span>
-          <h3>ESP32 Presence Monitoring System</h3>
-          <p>About $30 in parts. Running 24/7 since deployment with zero false triggers, using moving-average filtering for reliable occupancy detection.</p>
-          <span class="project-card-cta">Read the case study &#8594;</span>
-        </div>
-      </a>
-
-      <a class="project-preview-card" href="portfolio.html#modal-iqp">
-        <div class="project-card-img" style="background-image: url('Images/Parks_Map.png')" aria-hidden="true"></div>
-        <div class="project-card-body">
-          <span class="project-card-category">Remote sensing &amp; GIS</span>
-          <h3>Forest Restoration Data</h3>
-          <p>Turned a five-year, multi-park restoration dataset into a clearer ArcGIS decision-making resource.</p>
-          <span class="project-card-cta">Read the case study &#8594;</span>
-        </div>
-      </a>
-
-      <a class="project-preview-card" href="portfolio.html#modal-ieee">
-        <div class="project-card-img" style="background-image: url('Images/gripper_demo.gif')" aria-hidden="true"></div>
-        <div class="project-card-body">
-          <span class="project-card-category">Mechanical design</span>
-          <h3>IEEE Robotics Compliant Gripper</h3>
-          <p>A single-motor compliant gripper with a shear-pin mechanical fuse, refined across seven prototypes.</p>
-          <span class="project-card-cta">Read the case study &#8594;</span>
-        </div>
-      </a>
-    </div>
-
-    <div class="section-action">
-      <a class="button button-secondary" href="portfolio.html">Explore all engineering projects</a>
-    </div>
-  </section>
-
-  <section id="gallery" class="gallery">
-    <div class="section-heading">
-      <h2 class="section-title">Astrophotography</h2>
-      <p class="gallery-description">A selection of celestial objects captured through telescope setup, alignment, calibration, and patient imaging sessions.</p>
-    </div>
-    <div class="gallery-grid" data-site-gallery="cards" aria-label="Astrophotography gallery"></div>
-
-    <div class="gear-section" id="gear">
-      <div class="gear-heading">
-        <h3>Gear</h3>
-        <p>Current astrophotography setup</p>
+    <section id="work" class="work-band">
+      <div class="section-heading">
+        <p class="eyebrow">Engineering portfolio</p>
+        <h2 class="section-title">Projects and case studies</h2>
+        <p>Remote sensing and GIS, embedded systems, mechanical design, digital preservation, and hands-on fabrication, each with the write-up, images, and outcome.</p>
       </div>
-      <table class="gear-list">
-        <tbody>
-          <tr class="gear-item">
-            <th class="gear-type" scope="row">Optical tube</th>
-            <td class="gear-name">Celestron C8</td>
-          </tr>
-          <tr class="gear-item">
-            <th class="gear-type" scope="row">Wide-field optics</th>
-            <td class="gear-name">HyperStar <small>For nebula season</small></td>
-          </tr>
-          <tr class="gear-item">
-            <th class="gear-type" scope="row">Mount</th>
-            <td class="gear-name">EQ6-R Pro</td>
-          </tr>
-          <tr class="gear-item">
-            <th class="gear-type" scope="row">Control</th>
-            <td class="gear-name">ASIAIR Mini</td>
-          </tr>
-          <tr class="gear-item">
-            <th class="gear-type" scope="row">Main camera</th>
-            <td class="gear-name">ZWO ASI533MC Pro</td>
-          </tr>
-          <tr class="gear-item">
-            <th class="gear-type" scope="row">Guide scope</th>
-            <td class="gear-name">SVBONY 275 mm Guide Scope</td>
-          </tr>
-          <tr class="gear-item">
-            <th class="gear-type" scope="row">Guide camera</th>
-            <td class="gear-name">ZWO ASI120MM Mini</td>
-          </tr>
-        </tbody>
-      </table>
-      <figure class="gear-photo">
-        <img
-          src="Images/telescopes.jpg"
-          alt="My telescope setup beneath the night sky"
-          width="2160"
-          height="2882"
-          loading="lazy"
-        />
-      </figure>
-    </div>
-  </section>
+      <a class="button button-primary" href="portfolio.html">Open the portfolio</a>
+    </section>
 
-  <section id="contact" class="contact">
-    <h2 class="section-title">Contact</h2>
-    <p><a href="mailto:tjoubran@wpi.edu">tjoubran@wpi.edu</a></p>
-    <p>
-      <a href="https://www.linkedin.com/in/thomas-joubran" target="_blank" rel="noopener" style="display:inline-block;vertical-align:middle;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="width:40px;height:40px;vertical-align:middle;margin-right:0.5rem;filter: grayscale(100%);"/>
-      </a>
-    </p>
-  </section>
+    <section id="gallery" class="gallery">
+      <div class="section-heading">
+        <p class="eyebrow">Astrophotography</p>
+        <h2 class="section-title">Deep sky and solar</h2>
+        <p>Celestial objects captured through telescope setup, alignment, calibration, and patient imaging sessions. Select any image to view it full size.</p>
+      </div>
+
+      <div class="gallery-grid" data-gallery>
+        <button class="gallery-item" type="button" data-full="Images/gallery/eagle-nebula.webp" data-meta="M16 · Emission nebula · Serpens">
+          <span class="gallery-media"><img src="Images/gallery/eagle-nebula-thumb.webp" alt="" width="720" height="720" loading="lazy" decoding="async"></span>
+          <span class="gallery-caption"><strong>Eagle Nebula</strong><span>M16 · Emission nebula</span></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="Images/gallery/whirlpool-galaxy.webp" data-meta="M51 · Spiral galaxy · Canes Venatici">
+          <span class="gallery-media"><img src="Images/gallery/whirlpool-galaxy-thumb.webp" alt="" width="720" height="720" loading="lazy" decoding="async"></span>
+          <span class="gallery-caption"><strong>Whirlpool Galaxy</strong><span>M51 · Spiral galaxy</span></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="Images/gallery/dumbbell-nebula.webp" data-meta="M27 · Planetary nebula · Vulpecula">
+          <span class="gallery-media"><img src="Images/gallery/dumbbell-nebula-thumb.webp" alt="" width="720" height="720" loading="lazy" decoding="async"></span>
+          <span class="gallery-caption"><strong>Dumbbell Nebula</strong><span>M27 · Planetary nebula</span></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="Images/gallery/bodes-galaxy.webp" data-meta="M81 · Spiral galaxy · Ursa Major">
+          <span class="gallery-media"><img src="Images/gallery/bodes-galaxy-thumb.webp" alt="" width="720" height="720" loading="lazy" decoding="async"></span>
+          <span class="gallery-caption"><strong>Bode's Galaxy</strong><span>M81 · Spiral galaxy</span></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="Images/gallery/total-solar-eclipse.webp" data-meta="Totality · Solar eclipse">
+          <span class="gallery-media"><img src="Images/gallery/total-solar-eclipse-thumb.webp" alt="" width="720" height="720" loading="lazy" decoding="async"></span>
+          <span class="gallery-caption"><strong>Total Solar Eclipse</strong><span>Totality</span></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="Images/gallery/partial-solar-eclipse.webp" data-meta="Partial phase · Solar eclipse">
+          <span class="gallery-media"><img src="Images/gallery/partial-solar-eclipse-thumb.webp" alt="" width="720" height="720" loading="lazy" decoding="async"></span>
+          <span class="gallery-caption"><strong>Partial Solar Eclipse</strong><span>Partial phase</span></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="Images/gallery/pleiades.webp" data-meta="M45 · Open cluster · Taurus">
+          <span class="gallery-media"><img src="Images/gallery/pleiades-thumb.webp" alt="" width="720" height="720" loading="lazy" decoding="async"></span>
+          <span class="gallery-caption"><strong>Pleiades</strong><span>M45 · Open cluster</span></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="Images/gallery/crescent-nebula.webp" data-meta="NGC 6888 · Emission nebula · Cygnus">
+          <span class="gallery-media"><img src="Images/gallery/crescent-nebula-thumb.webp" alt="" width="720" height="720" loading="lazy" decoding="async"></span>
+          <span class="gallery-caption"><strong>Crescent Nebula</strong><span>NGC 6888 · Emission nebula</span></span>
+        </button>
+      </div>
+
+      <div class="gear" id="gear">
+        <div>
+          <div class="gear-heading">
+            <h3>Gear</h3>
+            <p>Current astrophotography setup</p>
+          </div>
+          <table class="gear-list">
+            <tbody>
+              <tr><th class="gear-type" scope="row">Optical tube</th><td class="gear-name">Celestron C8</td></tr>
+              <tr><th class="gear-type" scope="row">Wide-field optics</th><td class="gear-name">HyperStar <small>For nebula season</small></td></tr>
+              <tr><th class="gear-type" scope="row">Mount</th><td class="gear-name">EQ6-R Pro</td></tr>
+              <tr><th class="gear-type" scope="row">Control</th><td class="gear-name">ASIAIR Mini</td></tr>
+              <tr><th class="gear-type" scope="row">Main camera</th><td class="gear-name">ZWO ASI533MC Pro</td></tr>
+              <tr><th class="gear-type" scope="row">Guide scope</th><td class="gear-name">SVBONY 275 mm Guide Scope</td></tr>
+              <tr><th class="gear-type" scope="row">Guide camera</th><td class="gear-name">ZWO ASI120MM Mini</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="gear-photo">
+          <img src="Images/telescopes.jpg" alt="My telescope setup beneath the night sky" width="2160" height="2882" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2 class="section-title">Get in touch</h2>
+        <p>Open to internships, research, and conversations about space systems, remote sensing, and imaging.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="button button-primary" href="mailto:tjoubran@wpi.edu">tjoubran@wpi.edu</a>
+        <a class="button" href="https://www.linkedin.com/in/thomas-joubran" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <p>Thomas Joubran - <span id="footer-year"></span></p>
+    <p>Thomas Joubran &middot; <span data-year></span></p>
   </footer>
 
   <script defer src="js/main.js"></script>
