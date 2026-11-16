@@ -1,0 +1,9 @@
+{
+  "name": "iss-transit-finder-tests",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "satellite.js": "7.2.0",
+    "astronomy-engine": "2.1.19"
+  }
+}

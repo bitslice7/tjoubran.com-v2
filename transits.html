@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find when and where the International Space Station crosses the Moon near you, with the sky and lighting conditions that matter for photographing it.">
+  <meta name="theme-color" content="#000000">
+  <title>ISS Lunar Transit Finder | Thomas Joubran</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/vendor/leaflet.css">
+  <link rel="stylesheet" href="css/transits.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <button id="menu-btn" class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Astrophotography tools</p>
+      <h1>ISS Lunar Transit Finder</h1>
+      <p>When and where the International Space Station crosses the Moon near you, and what the light will be doing when it does.</p>
+    </section>
+
+    <section class="transit-tool" aria-label="Transit search">
+      <form id="transit-form" class="transit-form" novalidate>
+        <fieldset>
+          <legend>Where you are</legend>
+          <div class="field-row">
+            <label class="field">
+              <span>Latitude</span>
+              <input id="f-lat" name="lat" type="number" step="any" min="-90" max="90" inputmode="decimal" placeholder="42.2626" required>
+            </label>
+            <label class="field">
+              <span>Longitude</span>
+              <input id="f-lon" name="lon" type="number" step="any" min="-180" max="180" inputmode="decimal" placeholder="-71.8023" required>
+            </label>
+            <label class="field">
+              <span>Elevation, m</span>
+              <input id="f-elev" name="elev" type="number" step="any" inputmode="decimal" value="0">
+            </label>
+            <button id="locate-btn" class="button" type="button">Use my location</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>What to look for</legend>
+          <div class="field-row">
+            <label class="field">
+              <span>From</span>
+              <input id="f-from" name="from" type="date">
+            </label>
+            <label class="field">
+              <span>Search window</span>
+              <select id="f-days" name="days">
+                <option value="7">7 days</option>
+                <option value="14" selected>14 days</option>
+                <option value="30">30 days</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Travel up to, km</span>
+              <input id="f-dist" name="dist" type="number" min="1" max="400" step="1" value="100" inputmode="numeric">
+            </label>
+            <label class="field">
+              <span>Moon at least, &deg; up</span>
+              <input id="f-alt" name="alt" type="number" min="0" max="80" step="1" value="15" inputmode="numeric">
+            </label>
+            <label class="field field-wide">
+              <span>Light</span>
+              <select id="f-light" name="light">
+                <option value="twilight" selected>Dusk and dawn: sunlit ISS, dark sky</option>
+                <option value="dark">Any dark sky (adds silhouettes)</option>
+                <option value="all">Any time (adds daytime)</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button id="search-btn" class="button button-primary" type="submit">Find transits</button>
+          <p id="orbit-status" class="transit-note"></p>
+        </div>
+
+        <details id="tle-manual" class="tle-manual">
+          <summary>Enter orbit data by hand</summary>
+          <p class="transit-note">Paste the ISS two-line element set (the name line is optional). Leave this empty to fetch the current one from <a href="https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&amp;FORMAT=TLE" target="_blank" rel="noopener">CelesTrak</a>.</p>
+          <textarea id="f-tle" rows="3" spellcheck="false" aria-label="Two-line element set"></textarea>
+        </details>
+      </form>
+
+      <p id="transit-status" class="transit-status" role="status" aria-live="polite"></p>
+
+      <div class="transit-layout" id="transit-layout" hidden>
+        <ol id="transit-results" class="transit-results"></ol>
+        <div class="transit-map-wrap">
+          <div id="transit-map" class="transit-map" role="img" aria-label="Map of the transit path"></div>
+          <p class="transit-note">The band is the strip of ground where the ISS crosses the Moon; the line down its middle is the centreline. The ring is how far you said you would travel.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2>Reading the results</h2>
+      <p>The ISS is about 400 km up and the Moon is 384,000 km away, so the two only line up along a strip of ground a few kilometres wide, and the crossing is over in a second or two. Each result gives the time, the nearest point on the centreline, and how far that is from you.</p>
+      <p>Light decides what the photo looks like. Around dusk and dawn the station is still in sunlight while your sky is dark, so it shows up lit, with detail. Later at night it is in Earth's shadow and crosses as a black silhouette, which only shows against the lit part of the Moon. In daytime the Moon is pale and contrast is low.</p>
+    </section>
+
+    <section class="prose">
+      <h2>How far to trust it</h2>
+      <p>The geometry is good to a few tens of metres. The limit is the orbit data: the station's published orbit drifts and is occasionally boosted, so a prediction a week out can move by kilometres and seconds. Run the search again the day before and once more a few hours ahead, and set up on the centreline, not the edge of the strip.</p>
+      <p>Elevation is taken as yours along the whole path, and refraction near the horizon is not modelled, which is one reason to prefer a Moon well above 15&deg;.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Thomas Joubran &middot; <span data-year></span></p>
+  </footer>
+
+  <script defer src="js/main.js"></script>
+  <script defer src="js/vendor/satellite.min.js"></script>
+  <script defer src="js/vendor/astronomy.min.js"></script>
+  <script defer src="js/vendor/leaflet.js"></script>
+  <script defer src="js/transit-engine.js"></script>
+  <script defer src="js/transits.js"></script>
+</body>
+</html>
