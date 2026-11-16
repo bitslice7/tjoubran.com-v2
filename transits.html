@@ -37,6 +37,16 @@
         <fieldset>
           <legend>Where you are</legend>
           <div class="field-row">
+            <label class="field field-wide place-field">
+              <span>Town or postal code</span>
+              <input id="f-place" type="search" autocomplete="off" enterkeyhint="search" placeholder="Worcester, MA">
+            </label>
+            <button id="place-btn" class="button" type="button">Find place</button>
+            <button id="locate-btn" class="button" type="button">Use my location</button>
+          </div>
+          <p id="locate-status" class="transit-note locate-status" role="status" aria-live="polite"></p>
+          <ul id="place-results" class="place-results" hidden></ul>
+          <div class="field-row">
             <label class="field">
               <span>Latitude</span>
               <input id="f-lat" name="lat" type="number" step="any" min="-90" max="90" inputmode="decimal" placeholder="42.2626" required>
@@ -49,8 +59,8 @@
               <span>Elevation, m</span>
               <input id="f-elev" name="elev" type="number" step="any" inputmode="decimal" value="0">
             </label>
-            <button id="locate-btn" class="button" type="button">Use my location</button>
           </div>
+          <p class="transit-note field-credit">Place search by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>.</p>
         </fieldset>
 
         <fieldset>

@@ -4,6 +4,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const TLE_URL = 'https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE';
   const TLE_KEEP_MS = 2 * 3600e3; // CelesTrak refreshes every couple of hours; don't ask more often
+  const GEOCODE_URL = 'https://geocoding-api.open-meteo.com/v1/search';
   const SUNSET_DEG = -0.833;      // Sun's upper limb on the horizon, with refraction
 
   const $ = (id) => document.getElementById(id);
@@ -14,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   const searchBtn = $('search-btn');
   const locateBtn = $('locate-btn');
+  const placeBtn = $('place-btn');
+  const placeInput = $('f-place');
+  const placeList = $('place-results');
+  const locateStatus = $('locate-status');
   const statusEl = $('transit-status');
   const orbitEl = $('orbit-status');
   const layoutEl = $('transit-layout');
@@ -320,22 +325,135 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', (event) => { event.preventDefault(); search(); });
   fields.light.addEventListener('change', render);
 
-  locateBtn.addEventListener('click', () => {
-    if (!navigator.geolocation) {
-      setStatus('This browser will not share a location. Enter coordinates instead.', true);
+  // Where you are ------------------------------------------------------
+  function setLocateStatus(message, isError = false) {
+    locateStatus.classList.toggle('is-error', isError);
+    locateStatus.textContent = message;
+  }
+
+  function showPlaceChoices(places, chosen) {
+    const others = places.filter((place) => place !== chosen);
+    placeList.replaceChildren(...others.map((place) => {
+      const pick = el('button', 'link-btn', placeLabel(place));
+      pick.type = 'button';
+      pick.addEventListener('click', () => usePlace(place, places));
+      const item = el('li');
+      item.append(pick);
+      return item;
+    }));
+    placeList.hidden = others.length === 0;
+  }
+
+  const placeLabel = (place) => [...new Set([place.name, place.admin1, place.country].filter(Boolean))].join(', ');
+
+  function usePlace(place, places) {
+    fields.lat.value = Number(place.latitude).toFixed(5);
+    fields.lon.value = Number(place.longitude).toFixed(5);
+    if (Number.isFinite(place.elevation)) fields.elev.value = Math.round(place.elevation);
+    setLocateStatus(`Set to the centre of ${placeLabel(place)}.` + (places.length > 1 ? ' Not the one you meant? Other matches:' : ''));
+    showPlaceChoices(places, place);
+  }
+
+  async function geocode(text) {
+    const ask = async (name) => {
+      const response = await fetch(`${GEOCODE_URL}?count=5&language=en&format=json&name=${encodeURIComponent(name)}`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return (await response.json()).results || [];
+    };
+    let places = await ask(text);
+    // "Worcester MA" finds nothing but "Worcester, MA" does, so retry with the last word split off
+    const words = text.split(/\s+/);
+    if (!places.length && !text.includes(',') && words.length > 1) {
+      const front = words.slice(0, -1).join(' ');
+      places = await ask(`${front}, ${words[words.length - 1]}`);
+      if (!places.length) places = await ask(front);
+    }
+    return places;
+  }
+
+  async function findPlace() {
+    const text = placeInput.value.trim();
+    placeList.hidden = true;
+    if (!text) { setLocateStatus('Type a town or postal code first.', true); return; }
+
+    // A pair of numbers is taken as latitude, longitude
+    const pair = text.match(/^(-?\d+(?:\.\d+)?)\s*[,\s]\s*(-?\d+(?:\.\d+)?)$/);
+    if (pair && Math.abs(pair[1]) <= 90 && Math.abs(pair[2]) <= 180) {
+      fields.lat.value = pair[1];
+      fields.lon.value = pair[2];
+      setLocateStatus('Coordinates set.');
+      return;
+    }
+
+    placeBtn.disabled = true;
+    setLocateStatus('Looking that up…');
+    try {
+      const places = await geocode(text);
+      if (!places.length) setLocateStatus(`No place found for "${text}". Try the town name with a state or country, or a postal code.`, true);
+      else usePlace(places[0], places);
+    } catch (error) {
+      setLocateStatus('The place search did not answer. Try again, or enter coordinates below.', true);
+    } finally {
+      placeBtn.disabled = false;
+    }
+  }
+
+  function locationProblem(error) {
+    if (error.code === 1) {
+      return 'Location is blocked for this page. Allow it in your browser\'s site settings (some in-app browsers never allow it), or search for a place instead.';
+    }
+    if (error.code === 3) return 'The location service took too long. Try again, or search for a place instead.';
+    return 'This device could not work out where it is. Search for a place instead, or enter coordinates below.';
+  }
+
+  function locate() {
+    placeList.hidden = true;
+    if (!('geolocation' in navigator)) {
+      setLocateStatus('This browser has no location service. Search for a place instead, or enter coordinates below.', true);
       return;
     }
     locateBtn.disabled = true;
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude, altitude } = position.coords;
+    setLocateStatus('Finding your location…');
+
+    let settled = false;
+    const settle = () => { settled = true; locateBtn.disabled = false; clearTimeout(watchdog); };
+    // Some browsers never call back if the permission prompt is dismissed
+    const watchdog = setTimeout(() => {
+      if (settled) return;
+      settle();
+      setLocateStatus('No answer from the location service. Search for a place instead, or enter coordinates below.', true);
+    }, 25000);
+
+    const found = (position) => {
+      if (settled) return;
+      settle();
+      const { latitude, longitude, altitude, accuracy } = position.coords;
       fields.lat.value = latitude.toFixed(5);
       fields.lon.value = longitude.toFixed(5);
       if (altitude !== null && Number.isFinite(altitude)) fields.elev.value = Math.round(altitude);
-      locateBtn.disabled = false;
-    }, () => {
-      setStatus('Could not get your location. Enter coordinates instead.', true);
-      locateBtn.disabled = false;
-    }, { enableHighAccuracy: true, timeout: 15000 });
+      const within = accuracy >= 1000 ? `${(accuracy / 1000).toFixed(1)} km` : `${Math.round(accuracy)} m`;
+      setLocateStatus(`Using your location, good to about ${within}.` + (accuracy >= 1000 ? ' That is coarse, so check the coordinates.' : ''));
+    };
+    const failed = (error) => {
+      if (settled) return;
+      settle();
+      setLocateStatus(locationProblem(error), true);
+    };
+
+    // Ask for a precise fix first; if that fails for any reason but a refusal, take a coarse one
+    navigator.geolocation.getCurrentPosition(found, (error) => {
+      if (settled) return;
+      if (error.code === 1) { failed(error); return; }
+      navigator.geolocation.getCurrentPosition(found, failed, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+    }, { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 });
+  }
+
+  locateBtn.addEventListener('click', locate);
+  placeBtn.addEventListener('click', findPlace);
+  placeInput.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    event.preventDefault(); // search the place, don't submit the form
+    findPlace();
   });
 
   // Start from the last search's settings
