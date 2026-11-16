@@ -56,6 +56,24 @@
 .field input::placeholder { color: #555; }
 .field input:user-invalid { border-style: dashed; }
 
+/* Feedback for the place search and the location button sits right under them */
+.locate-status { min-height: 1.4rem; margin: 0.8rem 0 0.2rem; color: var(--muted); }
+.locate-status.is-error { color: var(--text); border-left: 2px solid var(--line); padding-left: 0.75rem; }
+.place-results {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin: 0.2rem 0 0.4rem;
+  font-size: 0.85rem;
+}
+.place-results[hidden] { display: none; }
+.place-results .link-btn { color: var(--muted); text-align: left; }
+.place-results .link-btn:hover { color: var(--text); }
+.locate-status + .place-results + .field-row,
+.locate-status + .field-row { margin-top: 0.8rem; }
+.field-credit { margin-top: 0.8rem; font-size: 0.78rem; }
+
 .form-actions {
   display: flex;
   flex-wrap: wrap;
@@ -208,6 +226,8 @@
 @media (max-width: 600px) {
   .transit-form { padding: 1.25rem; }
   .field-wide { grid-column: auto; }
+  .place-field { grid-column: 1 / -1; }            /* search box on its own row, both buttons under it */
+  .field-row > .button { padding-inline: 0.5rem; }
   .form-actions .button { width: 100%; }
   .transit-facts div { grid-template-columns: 1fr; gap: 0.15rem; }
 }
